@@ -37,4 +37,5 @@ working, and commit/sync often--if you are working on an old copy, your changes 
 =======
 CHRIS WAS HERE!!!!
 UNICORN FARTS YO!!!!
+Hi Everyone! Graphic Design Rocks! We have an idea for the logo! Charlie was here!
 >>>>>>> FETCH_HEAD
