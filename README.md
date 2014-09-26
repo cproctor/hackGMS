@@ -37,5 +37,6 @@ working, and commit/sync often--if you are working on an old copy, your changes 
 =======
 CHRIS WAS HERE!!!!
 UNICORN FARTS YO!!!!
-Hi Everyone! Graphic Design Rocks! We have an idea for the logo! Charlie was here!
+Hi Everyone! Graphic Design Rocks! We have an idea for the logo! Charlie was here! This is the coolest elective! *Lights Flicker* Everything is awesome, everything is cool when
+you're part of a team...................
 >>>>>>> FETCH_HEAD
