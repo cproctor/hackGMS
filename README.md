@@ -16,8 +16,7 @@ changes. You're going to need GitHub for Mac:
    Use your GMS email address, and make up a username. 
 3. Once you finish making your account, sign in to GitHub for Mac. 
 4. Using your web browser, go to the project page for HackGMS 
-   (You're probably on it right now, but just in case the URL is  
-   https://github.com/cproctor/hackGMS)
+   (You're probably on it right now, but just in case the URL is https://github.com/cproctor/hackGMS)
 5. Click the "Clone in Desktop" button at the bottom of the right sidebar. It will ask
    you where you want to save the project--you can put it anywhere you want on your 
    computer.
