@@ -33,5 +33,8 @@ business, making changes to the project. When you are ready to share the changes
 everyone else, just press "sync" in GitHub for Mac. Make sure you sync before you start
 working, and commit/sync often--if you are working on an old copy, your changes may be lost.
 
+<<<<<<< HEAD
+=======
 CHRIS WAS HERE!!!!
 UNICORN FARTS YO!!!!
+>>>>>>> FETCH_HEAD
