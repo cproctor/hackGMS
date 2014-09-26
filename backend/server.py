@@ -34,16 +34,17 @@
 # flask is a small web application framework we'll use. Most of the hard work
 # is already done for us!
 # You can read about flask here: http://flask.pocoo.org/
-from flask import Flask
+from flask import Flask, render_template
 
 # There, see! We made the app. 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../frontend")
+app.debug=True
 
 # Here we are saying what should happen when a user visits /, or the main page
 # of the site
 @app.route('/')
 def mainPage():
-    return "Hi! This is the message app!"
+    return render_template('index.html')
 
 # Here we are saying what should happen when a user visits /test
 @app.route('/test')
@@ -52,4 +53,4 @@ def testPage():
 
 
 # Now that we've created the app, let's run it!
-app.run()
+app.run(host='0.0.0.0')
