@@ -32,3 +32,5 @@ Once you have GitHub for Mac installed on your computer, you can just go about y
 business, making changes to the project. When you are ready to share the changes to 
 everyone else, just press "sync" in GitHub for Mac. Make sure you sync before you start
 working, and commit/sync often--if you are working on an old copy, your changes may be lost.
+
+CHRIS WAS HERE!!!!
