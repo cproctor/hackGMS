@@ -1,21 +1,6 @@
-# The .gitignore file (starts with a . so it’s normally hidden!) lists
-# kinds of files that git should ignore. These are usually temporary junk
-# files that don’t matter and shouldn’t be added to the repository.
-# Generally, you shouldn't need to mess with this file.
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
-# temporary files created by vim
-*.swp
-*.swo
-
-# A few files we will use to keep track of when the server was started
-# and which process is running it (so we can kill the process when we want it
-# to stop)
-server.pid
-server_start_time
 
 # C extensions
 *.so
