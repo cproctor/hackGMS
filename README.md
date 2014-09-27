@@ -29,9 +29,15 @@ Making changes
 --------------
 
 Once you have GitHub for Mac installed on your computer, you can just go about your 
-business, making changes to the project. When you are ready to share the changes to 
-everyone else, just press "sync" in GitHub for Mac. Make sure you sync before you start
-working, and commit/sync often--if you are working on an old copy, your changes may be lost.
+business, making changes to the project using TextWrangler. GitHub for Mac watches these 
+files--every time you change a file and save it, you will also see the change show up in 
+GitHub for Mac. After you make a change, use GitHub for Mac to commit it by leaving a 
+message explaining what change you made. 
+
+When you are ready to share the changes to everyone else, just press "Sync" in the top 
+right corner of GitHub for Mac. Make sure you sync before you start
+working, and commit/sync often--if you are working on an old copy, your changes may conflict
+with changes someone else is making at the same time.
 
 Seeing the changes you made
 ---------------------------
