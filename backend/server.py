@@ -18,7 +18,7 @@
 from flask import Flask, render_template
 
 # There, see! We made the app. 
-app = Flask(__name__, template_folder="../frontend")
+app = Flask(__name__, template_folder="../frontend", static_folder="../frontend/static")
 app.debug=True
 
 # Here we are saying what should happen when a user visits /, or the main page
