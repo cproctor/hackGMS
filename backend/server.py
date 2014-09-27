@@ -32,6 +32,11 @@ def mainPage():
 def testPage():
     return "The test worked!"
 
+# It would be nice if we could see the server's status
+@app.route('/api/status')
+def statusPage():
+    return "This will be the status page."
+
 
 # Now that we've created the app, let's run it!
 app.run(host='0.0.0.0')
