@@ -1,3 +1,8 @@
+# The .gitignore file (starts with a . so it’s normally hidden!) lists
+# kinds of files that git should ignore. These are usually temporary junk
+# files that don’t matter and shouldn’t be added to the repository.
+# Generally, you shouldn't need to mess with this file.
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
