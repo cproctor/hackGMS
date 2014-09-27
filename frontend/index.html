@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <!-- 
+            What's with these funny codes? This program might be run on various different computers, 
+            which means the URL for things like stylesheets would be different. The double curly 
+            brackets mean we are inserting a generated value. In this case, we are using Flask's
+            url_for function to figure out the right URL for the file and drop that in. 
+         -->
+         <!--
+            Ah! Got it!
+         -->
+         <link href="{{ url_for('static', filename='style/GS_style.css') }}" rel="stylesheet">
     </head>
     <body>
         <h1>Hack GMS</h1>
-        <p>Someday there will be more here...</p>
+        <p>hackGMS will be a program designed by middle-schoolers to change the way our school—the Girls' Middle School—works.</p>
+        <p>In the words of our fearless leader, Chris Proctor:</p>
+        <i>We will create a “message board” web application for daily announcements, to be displayed on screens around the school.
+        Parents will be able to send a text while parked in the traffic line to alert girls to meet their ride.</i>
+        <p> Hi! This is the prototype for our webpage. We believe that a simple website with simple colors and a 
+        good, well designed logo would be best!</p>
     </body>
 
 </html>
