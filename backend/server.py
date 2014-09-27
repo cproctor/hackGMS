@@ -1,22 +1,3 @@
-# Copyright (c) 2014 The Girls' Middle School
-# Permission is hereby granted, free of charge, to any person obtaining a copy 
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights 
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-# copies of the Software, and to permit persons to whom the Software is 
-# furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in 
-# all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
-# SOFTWARE.
-
 # server.py
 # ---------
 # This script starts the backend server, so that requests from clients
@@ -37,7 +18,7 @@
 from flask import Flask, render_template
 
 # There, see! We made the app. 
-app = Flask(__name__, template_folder="../frontend")
+app = Flask(__name__, template_folder="../frontend", static_folder="../frontend/static")
 app.debug=True
 
 # Here we are saying what should happen when a user visits /, or the main page
@@ -50,6 +31,11 @@ def mainPage():
 @app.route('/test')
 def testPage():
     return "The test worked!"
+
+# It would be nice if we could see the server's status
+@app.route('/api/status')
+def statusPage():
+    return "This will be the status page."
 
 
 # Now that we've created the app, let's run it!
