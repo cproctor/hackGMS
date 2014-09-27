@@ -32,3 +32,12 @@ Once you have GitHub for Mac installed on your computer, you can just go about y
 business, making changes to the project. When you are ready to share the changes to 
 everyone else, just press "sync" in GitHub for Mac. Make sure you sync before you start
 working, and commit/sync often--if you are working on an old copy, your changes may be lost.
+
+Seeing the changes you made
+---------------------------
+
+You can always run the site from your own computer. For details, see running_the_server.md
+in the backend folder. 
+The hackGMS live website lives here: http://burks.girlsms.org:5000/ However, 
+it doesn't automatically update (yet). If you want your changes to show up on the live website,
+ask Chris to stop the server, pull the latest changes, and restart the server.
