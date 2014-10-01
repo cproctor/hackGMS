@@ -32,17 +32,16 @@ def mainPage():
 def testPage():
     return "The test worked!"
 
-# It would be nice if we could see the server's status
+# It would be nice if we could see the server's status (Chris will do this)
 @app.route('/api/status')
 def statusPage():
     return "This will be the status page."
     
-# TODO Here's another 
+# This should return the current list of messages.
+@app.route('/api/messages')
 def getMessages():
-    
+    return "This should return the current list of messages."
 
 
 # Now that we've created the app, let's run it!
 app.run(host='0.0.0.0')
-
-#test during OH
