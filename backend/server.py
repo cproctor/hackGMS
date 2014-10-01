@@ -36,6 +36,10 @@ def testPage():
 @app.route('/api/status')
 def statusPage():
     return "This will be the status page."
+    
+# TODO Here's another 
+def getMessages():
+    
 
 
 # Now that we've created the app, let's run it!
