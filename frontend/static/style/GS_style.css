@@ -6,5 +6,8 @@ body {
 #box {
     background-color: #ffffff;
     text-align: center;
-    width: 80%;
+    width: 95%;
+    min-height: 550px;
+    margin-left: auto ;
+    margin-right: auto ;
 }
