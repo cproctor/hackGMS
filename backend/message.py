@@ -6,5 +6,9 @@
 # ----------
 
 
-class Message(object):
-    pass
+class Message {
+  private String message;
+  private String date;
+  private String Audience;
+  
+  }
