@@ -1,4 +1,10 @@
 body {
-    background-color: #ffffff;
+    background-color: #003366;
     min-height: 300px;
+}
+
+#box {
+    background-color: #ffffff;
+    text-align: center;
+    width: 80%;
 }
