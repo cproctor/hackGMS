@@ -3,3 +3,6 @@ body {
     min-height: 300px;
 }
 
+p {
+    border-style: solid;
+}
