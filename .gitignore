@@ -11,6 +11,9 @@ __pycache__/
 *.swp
 *.swo
 
+# database files.
+*.sqlite3
+
 # A few files we will use to keep track of when the server was started
 # and which process is running it (so we can kill the process when we want it
 # to stop)
