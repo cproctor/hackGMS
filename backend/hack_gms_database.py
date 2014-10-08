@@ -23,7 +23,9 @@ location_of_this_folder = path.dirname(path.abspath(__file__))
 database_file_name = "hack_gms_database.sqlite3"
 database_file = path.join(location_of_this_folder, database_file_name)
 
-connection = sqlite3.connect(database_file, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+connection = sqlite3.connect(database_file, 
+        detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES,
+        check_same_thread=False)
 
 class HackGMSDatabase(object):
 
@@ -58,7 +60,7 @@ class HackGMSDatabase(object):
     @classmethod
     def get_message_record(cls, message_id):
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM messages WHERE id = ?;", message_id)
+        cursor.execute("SELECT * FROM messages WHERE id = ?;", (message_id,))
         record = cursor.fetchone()
         cursor.close()
         return record
@@ -82,6 +84,7 @@ class HackGMSDatabase(object):
             (message.text, message.date)
         )
         connection.commit()
+        message.id = cursor.lastrowid
         cursor.close()
 
     # Update a record that exists.
@@ -90,7 +93,7 @@ class HackGMSDatabase(object):
         cursor = connection.cursor()
         cursor.execute(
             "UPDATE messages SET (text= ?, date= ? ) WHERE id = ?;",
-            (message.text, message.date, message.id)
+            (message.text, message.date, (message.id,))
         )
         connection.commit()
         cursor.close()
@@ -99,7 +102,7 @@ class HackGMSDatabase(object):
     @classmethod
     def delete_message_record(cls, message):
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM messages WHERE id = ?;", message.id)
+        cursor.execute("DELETE FROM messages WHERE id = ?;", (message.id,))
         connection.commit()
         cursor.close()
         message.id = None

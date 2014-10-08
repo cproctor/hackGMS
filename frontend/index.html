@@ -3,7 +3,7 @@
     <head>
          <link href="{{ url_for('static', filename='style/GS_style.css') }}" rel="stylesheet">
     </head>
-    <body>
+    <body ng-app="hackGMS" ng-controller="hackGMSController">
         <div id="box">
             <h1>Hack GMS!!!!</h1>
             <b> Hi! This is the prototype for our webpage. We believe that a simple website with simple colors and a 
@@ -13,14 +13,25 @@
             <i>We will create a “message board” web application for daily announcements, to be displayed on screens around the school.
             Parents will be able to send a text while parked in the traffic line to alert girls to meet their ride.</i>
             <p>For more information on the work that will go into the project, check out <a href="https://wiki.girlsms.org/wiki/projects/hackgms/Hack_GMS.html">our wiki!</a></p>
+
+            <!--  This is a bunch of magic mumbo-jumbo written by Chris. Ask if interested. -->
+            <div ng-repeat="message in messages">
+                <div gms-message></div>
+            </div>
+            <!-- The end of the magic... -->
+
             <p>Here is a Scratch project about our project!</p>
             <iframe allowtransparency="true" width="485" height="402" src="http://scratch.mit.edu/projects/embed/28449698/?autostart=false" frameborder="0" allowfullscreen></iframe>
             <p>...</p>
-            <button href="#">Add a message</button>
+            <input ng-model="messageText"></input>
+            <button ng-click="addMessage();">Add a message</button>
         </div>
         
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 	    <script src="http://allen.girlsms.org/~cproctor/infestation.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="{{ url_for('static', filename='js/hack_gms_app.js') }}"></script>
        
     </body>
 

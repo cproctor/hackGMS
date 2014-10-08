@@ -2,5 +2,6 @@
 once for each message that needs to be displayed. If you change this template,
 the appearance of each message will be affected. -->
 <div class="message">
-    This is a message.
+    <p>{{message.text}}</p>
+    <p>Created {{message.date.toLocaleDateString("en-US")}} <span ng-click="deleteMessage(message);">DELETE</span></p>
 </div>

@@ -47,6 +47,17 @@ class Message(object):
         # OK, all done. Let's return the list of messages.
         return messages_list
 
+    # Gets a particular message in the database.
+    # If it does not exist, returns None.
+    @classmethod
+    def get_message_by_id(cls, message_id):
+        record = HackGMSDatabase.get_message_record(message_id)
+        if record is not None:
+            message = Message(*record)
+            return message
+        else:
+            return None
+        
     # __init__ is a sneaky method--this is what gets called when you create
     # a new Message. In the example above, we passed "There is no school on
     # Monday" into Message(). The function below is what's actually called. 
@@ -67,10 +78,12 @@ class Message(object):
     def is_valid(self):
         # A simple rule: Messages must have a string called text and a datetime
         # called date.
-        if isinstance(self.text, str) and isinstance(self.date, datetime):
-            return True
-        else:
-            return False
+        self.errors = []
+        if not isinstance(self.text, basestring):
+            self.errors.append("text (%s) must be a string" % self.text)
+        if not isinstance(self.date, datetime):
+            self.errors.append("date (%s) must be a date" % self.date)
+        return not any(self.errors)
 
     # When you create a Message, it will only stick around until the end of the
     # program, and the program starts again each time someone loads the page.
@@ -83,6 +96,14 @@ class Message(object):
             HackGMSDatabase.save_message_record(self)
         else:
             raise ValueError("Tried to save an invalid message!")
+
+    # Gives a version of this object that's ready to be encoded as JSON.
+    def ready_for_json(self):
+        return {
+            "id": self.id,
+            "text": self.text,
+            "date": self.date.isoformat()
+        }
 
     # Another sneaky method. This determines how the message will be printed if
     # anyone ever runs print(message). This is pretty much used when messing 

@@ -15,11 +15,23 @@
 # flask is a small web application framework we'll use. Most of the hard work
 # is already done for us!
 # You can read about flask here: http://flask.pocoo.org/
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response, request
+
+# Then we'll be wanting the Message object because it has lots of great powers.
+# See message.py to find out about this one. We also need access to the database
+# for creating and deleting records.
+from message import Message
+from hack_gms_database import HackGMSDatabase
+from helpers import get_date_from_json
+
+# And we want json so we can turn things into JSON, a format for sending information
+# across the Internet.
+import json
 
 # There, see! We made the app. 
 app = Flask(__name__, template_folder="../frontend", static_folder="../frontend/static")
 app.debug=True
+
 
 # Here we are saying what should happen when a user visits /, or the main page
 # of the site
@@ -40,8 +52,46 @@ def statusPage():
 # This should return the current list of messages.
 @app.route('/api/messages')
 def getMessages():
-    return "This should return the current list of messages."
+    messages_list = Message.get_all_messages()
 
+    # Make a new list, swapping each message for a ready_for_json version of itself
+    messages_as_json_list = [each_message.ready_for_json() for each_message in messages_list]
+
+    # We need to get fancy here beacuse we want to set a response header--
+    # a little hint telling the recipient what kind of thing is coming. 
+    # In this case, we want to set the Content-Type header to "application/json",
+    # so the Javascript knows to decode the response appropriately. 
+    response = make_response(json.dumps(messages_as_json_list), 200)
+    response.headers['Content-Type'] = "application/json"
+    return response
+
+# When someone sends a POST with valid JSON to this URL, a new message
+# will be created.
+@app.route('/api/messages/create', methods=["POST"])
+def createNewMessage():
+    text = request.json.get("text")
+    date = get_date_from_json(request.json.get("date"))
+    new_message = Message(text=text, date=date)
+    if new_message.is_valid():
+        HackGMSDatabase.create_message_record(new_message)
+        response = make_response(json.dumps(new_message.ready_for_json()), 200)
+    else:
+        error_list = '; '.join(new_message.errors)
+        response = make_response("There were errors creating your message: %s" % error_list, 400)
+    return response
+
+# Deletes the message with the specified id if it exists.
+# If it does not exist, do nothing and report that the delete
+# was unsuccessful.
+@app.route('/api/messages/delete/<int:message_id>')
+def deleteMessage(message_id):
+    message_to_delete = Message.get_message_by_id(message_id)
+    if message_to_delete is not None:
+        HackGMSDatabase.delete_message_record(message_to_delete)
+        response = make_response("Message %s was deleted." % message_id, 200)
+    else:
+        response = make_response("Message %s does not exist." % message_id, 404)
+    return response 
 
 # Now that we've created the app, let's run it!
 app.run(host='0.0.0.0')
