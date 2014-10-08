@@ -27,7 +27,28 @@ connection = sqlite3.connect(database_file,
         detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES,
         check_same_thread=False)
 
+create_table_test = 0
+
+
 class HackGMSDatabase(object):
+
+    @classmethod
+    def create_message_table_if_necessary(cls):
+        try:
+            cursor = connection.cursor()
+            cursor.execute("""
+                CREATE TABLE messages (
+                    id INTEGER PRIMARY KEY,
+                    text TEXT,
+                    date TIMESTAMP
+                );
+            """)
+            connection.commit();
+            cursor.close();    
+        except sqlite3.Error as e:
+            if e.args[0] != "table messages already exists":
+                print "An error occurred:", e.args[0]
+        
 
     # Destroy everything in the database, even the structure of the tables,
     # and rebuild it from scratch. Careful with this one!
@@ -37,19 +58,18 @@ class HackGMSDatabase(object):
         # Bye.
         cursor.execute("DROP TABLE IF EXISTS messages;")
         # Oh hello there!
-        cursor.execute("""
-            CREATE TABLE messages (
-                id INTEGER PRIMARY KEY,
-                text TEXT,
-                date TIMESTAMP
-            );
-        """)
-        connection.commit()
+        HackGMSDatabase.create_message_table_if_necessary()
         cursor.close()
+
 
     # Get all the message records.
     @classmethod
     def get_message_records(cls):
+        global create_table_test
+        if create_table_test == 0:
+            create_table_test = 1
+            HackGMSDatabase.create_message_table_if_necessary()
+    
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM messages ORDER BY date;")
         message_records = cursor.fetchall()
