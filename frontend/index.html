@@ -13,6 +13,7 @@
             <i>We will create a “message board” web application for daily announcements, to be displayed on screens around the school.
             Parents will be able to send a text while parked in the traffic line to alert girls to meet their ride.</i>
             <p>For more information on the work that will go into the project, check out <a href="https://wiki.girlsms.org/wiki/projects/hackgms/Hack_GMS.html">our wiki!</a></p>
+            <p><b>Messages:</b></p>
 
             <!--  This is a bunch of magic mumbo-jumbo written by Chris. Ask if interested. -->
             <div ng-repeat="message in messages">
@@ -20,11 +21,12 @@
             </div>
             <!-- The end of the magic... -->
 
-            <p>Here is a Scratch project about our project!</p>
-            <iframe allowtransparency="true" width="485" height="402" src="http://scratch.mit.edu/projects/embed/28449698/?autostart=false" frameborder="0" allowfullscreen></iframe>
-            <p>...</p>
+            <p><b>Add a new message here:</b></p>
             <input ng-model="messageText"></input>
             <button ng-click="addMessage();">Add a message</button>
+            <p>...</p>
+            <p>Here is a Scratch project about our project!</p>
+            <iframe allowtransparency="true" width="485" height="402" src="http://scratch.mit.edu/projects/embed/28449698/?autostart=false" frameborder="0" allowfullscreen></iframe>
         </div>
         
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
