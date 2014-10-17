@@ -38,6 +38,11 @@ app.debug=True
 @app.route('/')
 def mainPage():
     return render_template('index.html')
+    
+# This renders the about page.
+@app.route('/about')
+def aboutPage():
+    return render_template('about.html')
 
 # Here we are saying what should happen when a user visits /test
 @app.route('/test')
