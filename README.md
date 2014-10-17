@@ -2,7 +2,7 @@ hackGMS
 =======
 
 Ten middle schoolers set out to create a web application that will change the way our 
-school works. Check back for updates! (We need a better description here...)
+school works. The hackGMS app is running at http://104.131.148.123/
 
 Get set up
 ----------
