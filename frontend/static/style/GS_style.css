@@ -1,6 +1,7 @@
 body {
     background-color: #003366;
     min-height: 300px;
+    background-image:'Background.jpg'
 }
 
 #box {
