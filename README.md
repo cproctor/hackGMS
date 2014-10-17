@@ -43,16 +43,6 @@ Seeing the changes you made
 ---------------------------
 
 You can always run the site from your own computer. For details, see running_the_server.md
-in the backend folder. 
-The hackGMS live website lives here: http://burks.girlsms.org:5000/ However, 
+in the backend folder. The hackGMS live website lives here: http://http://104.131.148.123/ However, 
 it doesn't automatically update (yet). If you want your changes to show up on the live website,
-<<<<<<< HEAD
 ask Chris to stop the server, pull the latest changes, and restart the server.
->>>>>>> FETCH_HEAD
-
-TESTING 123
-=======
-ask Chris to stop the server, pull the latest changes, and restart the server.
->>>>>>> FETCH_HEAD
-Grrrrrrr...
-Why buggy go by-by? :(
