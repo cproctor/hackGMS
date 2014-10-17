@@ -1,7 +1,7 @@
 body {
     background-color: #003366;
     min-height: 300px;
-    background-image:'Background.jpg'
+    background-image:url('frontend/style/Background.jpg')
 }
 
 #box {
