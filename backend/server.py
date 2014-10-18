@@ -24,6 +24,8 @@ from message import Message
 from hack_gms_database import HackGMSDatabase
 from helpers import get_date_from_json
 
+from datetime import datetime
+
 # And we want json so we can turn things into JSON, a format for sending information
 # across the Internet.
 import json
@@ -75,7 +77,7 @@ def getMessages():
 @app.route('/api/messages/create', methods=["POST"])
 def createNewMessage():
     text = request.json.get("text")
-    date = get_date_from_json(request.json.get("date"))
+    date = datetime.now()
     new_message = Message(text=text, date=date)
     if new_message.is_valid():
         HackGMSDatabase.create_message_record(new_message)
