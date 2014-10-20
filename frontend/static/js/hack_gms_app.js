@@ -1,6 +1,6 @@
 angular.module("hackGMS", [])
 
-.controller("hackGMSController", ['$http', '$scope', function($http, $scope) {
+.controller("hackGMSController", ['$http', '$interval', '$scope', function($http, $interval, $scope) {
 
     $scope.reloadMessages = function() {
         $http.get('api/messages').then(function(response) {
@@ -28,7 +28,7 @@ angular.module("hackGMS", [])
             .then($scope.reloadMessages)
     }
 
-    $scope.reloadMessages()
+    $interval($scope.reloadMessages, 5000)
 
 }])
 .directive("gmsMessage", function() {
