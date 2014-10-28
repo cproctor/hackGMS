@@ -51,3 +51,9 @@ img {
 	width: 300px;
 	border: 2px solid #D35400 ;
 }
+
+#header {
+    background-color: #6699FF;
+    font-family: Arial;
+}
+
