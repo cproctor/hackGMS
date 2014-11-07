@@ -2,7 +2,7 @@ hackGMS
 =======
 
 Ten middle schoolers set out to create a web application that will change the way our 
-school works. The hackGMS app is running at http://104.131.148.123/
+school works. The hackGMS app is running at http://gms.ninja
 
 Get set up
 ----------
@@ -43,6 +43,6 @@ Seeing the changes you made
 ---------------------------
 
 You can always run the site from your own computer. For details, see running_the_server.md
-in the backend folder. The hackGMS live website lives here: http://http://104.131.148.123/ However, 
+in the backend folder. The hackGMS live website lives here: http://gms.ninja However, 
 it doesn't automatically update (yet). If you want your changes to show up on the live website,
-ask Chris to stop the server, pull the latest changes, and restart the server.
+ask Chris (or Ada) to stop the server, pull the latest changes, and restart the server.
