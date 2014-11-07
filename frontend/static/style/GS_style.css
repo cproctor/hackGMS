@@ -18,7 +18,7 @@ body {
 
 	background-color: #2980B9;
 	width: 110%;
-	float:left;
+	float: left;
 	position: relative;
 	left: -5%;
 	padding:0;
@@ -56,5 +56,9 @@ img {
 #header {
     background-color: #6699FF;
     font-family: Arial;
+}
+
+li {
+    list-style: none;
 }
 
