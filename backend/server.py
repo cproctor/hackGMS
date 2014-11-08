@@ -26,15 +26,15 @@ from helpers import get_date_from_json
 
 from datetime import datetime
 
-# And we want json so we can turn things into JSON, a format for sending information
-# across the Internet.
+# Here are a few pretty standard libraries... read up on them if interested.
 import json
-
-# OK, one more data format. YAML is like JSON, except it's easy to read and write.
 import yaml
+import os
 
 # We'll go ahead and load the settings from the settings file.
-with open('settings.yaml') as settings_file:
+
+settings_filename = os.path.join(os.path.dirname(__file__), 'settings.yaml')
+with open(settings_filename) as settings_file:
     settings = yaml.load(settings_file.read())
 
 # There, see! We made the app. 
