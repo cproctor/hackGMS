@@ -37,9 +37,11 @@ body {
 	color: white;
 	text-decoration: none;
 }
+
 h1 {
 	text-align: center;
 	color: #2C3E50;
+	font-family: Arial;
 }
 
 h2 {
