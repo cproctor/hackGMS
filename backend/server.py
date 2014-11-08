@@ -30,6 +30,13 @@ from datetime import datetime
 # across the Internet.
 import json
 
+# OK, one more data format. YAML is like JSON, except it's easy to read and write.
+import yaml
+
+# We'll go ahead and load the settings from the settings file.
+with open('settings.yaml') as settings_file:
+    settings = yaml.load(settings_file.read())
+
 # There, see! We made the app. 
 app = Flask(__name__, template_folder="../frontend", static_folder="../frontend/static")
 app.debug=True
@@ -101,4 +108,4 @@ def deleteMessage(message_id):
     return response 
 
 # Now that we've created the app, let's run it!
-app.run(host='0.0.0.0')
+app.run(host=settings['host'], port=settings['port'])
