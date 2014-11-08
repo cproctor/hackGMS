@@ -19,6 +19,7 @@ __pycache__/
 # to stop)
 server.pid
 server_start_time
+backend/settings.yaml
 
 # C extensions
 *.so
