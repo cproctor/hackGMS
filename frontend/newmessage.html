@@ -1,1 +1,26 @@
-<!DOCTYPE html><html>    <head>         <link href="{{ url_for('static', filename='style/GS_style.css') }}" rel="stylesheet">    </head>    <body>        <div id="box">            <h1>Add a Message</h1>            <p><a href="/">Back to main page</a></p>            <p><b>Add a new message here:</b></p>            <input ng-model="messageText"></input>            <button ng-click="addMessage();">Add a message</button>                        <form action="">                <input type="checkbox" name="importance" value="high">High Importance<br>                <input type="checkbox" name="importance" value="med">Medium Importance<br>                <input type="checkbox" name="importance" value="low">Low Importance            </form>            </div>       </div>    </body></html>
+<!DOCTYPE html>
+<html>
+    <head>
+         <link href="{{ url_for('static', filename='style/GS_style.css') }}" rel="stylesheet">
+    </head>
+    <body ng-app="hackGMS" ng-controller="hackGMSController" style="background-image: url('hackGMS/frontend/Background.jpg');">
+        <div id="box">
+            <h1>Add a Message</h1>
+            <p><a href="/">Back to main page</a></p>
+            <p><b>Add a new message here:</b></p>
+            <input ng-model="messageText"></input>
+            <button ng-click="addMessage();">Add a message</button>
+            
+            <form action="">
+                <input type="checkbox" name="importance" value="high">High Importance<br>
+                <input type="checkbox" name="importance" value="med">Medium Importance<br>
+                <input type="checkbox" name="importance" value="low">Low Importance
+            </form>
+            </div>
+       </div>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="{{ url_for('static', filename='js/hack_gms_app.js') }}"></script>
+    </body>
+</html>

@@ -28,6 +28,7 @@ angular.module("hackGMS", [])
             .then($scope.reloadMessages)
     }
 
+    $scope.reloadMessages()
     $interval($scope.reloadMessages, 5000)
 
 }])
