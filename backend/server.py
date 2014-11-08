@@ -58,6 +58,11 @@ def aboutPage():
 def testPage():
     return "The test worked!"
 
+# Renders new-message page.
+@app.route('/newmessage')
+def newmessagePage():
+   return render_template('newmessage.html')
+
 # It would be nice if we could see the server's status (Chris will do this)
 @app.route('/api/status')
 def statusPage():
