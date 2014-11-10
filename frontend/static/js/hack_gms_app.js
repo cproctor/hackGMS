@@ -32,8 +32,14 @@ angular.module("hackGMS", [])
     $interval($scope.reloadMessages, 5000)
 
 }])
-.directive("gmsMessage", function() {
+.directive("gmsMessageDelete", function() {
     return {
         templateUrl: "static/templates/message.html"
+    }
+})
+
+.directive("gmsMessageNoDelete", function() {
+    return {
+        templateUrl: "static/templates/messageNoDelete.html"
     }
 })
