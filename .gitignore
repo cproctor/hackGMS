@@ -81,3 +81,7 @@ target/
 *.xcbkptlist
 
 *.py~
+
+hackGMSClient/hackGMSClient.xcodeproj/project.xcworkspace/xcuserdata/brucearthur.xcuserdatad/UserInterfaceState.xcuserstate
+
+hackGMSClient/hackGMSClient.xcodeproj/xcuserdata/brucearthur.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
