@@ -73,3 +73,11 @@ docs/_build/
 target/
 
 *.py~
+
+*.xccheckout
+
+*.xcuserstate
+
+*.xcuserstate
+
+*.xcuserstate
