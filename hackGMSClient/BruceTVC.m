@@ -142,6 +142,7 @@ NSString *hackGMSCellIdentifier = @"hackGMS";
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:hackGMSCellIdentifier];
         cell.textLabel.numberOfLines = 0;
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
     }
     
     // Configure the cell...
