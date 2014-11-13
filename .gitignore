@@ -85,3 +85,5 @@ target/
 *.xcuserstate
 
 *.xcuserstate
+
+hackGMSClient/hackGMSClient.xcodeproj/xcuserdata/barthur.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
