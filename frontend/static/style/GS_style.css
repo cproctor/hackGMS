@@ -63,7 +63,7 @@ li {
 }
 
 .message {
-    border: thick ridge red;
-    border-length: 50%;
+    border: thin solid #99CCFF;
+    
 }
 
