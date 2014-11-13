@@ -62,3 +62,8 @@ li {
     list-style: none;
 }
 
+.message {
+    border: thick ridge red;
+    border-length: 50%;
+}
+
