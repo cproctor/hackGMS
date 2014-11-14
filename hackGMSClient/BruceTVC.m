@@ -44,9 +44,14 @@
 
 -(IBAction)sendMessage:(id)sender
 {
-    [self sendMessageTextToServer:[_messageField text]];
-    [_messageField resignFirstResponder];
-    _messageField.text = @"";
+    NSString *messageFieldText = [_messageField text];
+    
+    // If the field was empty, don't bother sending anything
+    if (messageFieldText != nil && [messageFieldText length] != 0) {
+        [self sendMessageTextToServer:messageFieldText];
+        [_messageField resignFirstResponder];
+        _messageField.text = @"";
+    }
 }
 
 
