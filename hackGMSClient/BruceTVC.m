@@ -141,7 +141,16 @@
 
 NSString *hackGMSCellIdentifier = @"hackGMS";
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    //NSLog(@"heightForRowAtIndex:%i returned %f\n", [indexPath indexAtPosition:1], cell.frame.size.height);
+    return cell.frame.size.height;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGRect frame;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hackGMSCellIdentifier];
     
     if (!cell) {
@@ -154,7 +163,11 @@ NSString *hackGMSCellIdentifier = @"hackGMS";
     NSDictionary *message = [_messages objectAtIndex:[indexPath indexAtPosition:1]];
     cell.textLabel.text  = [message objectForKey:@"text"];
     cell.detailTextLabel.text = [message objectForKey:kMessageDateAsStringWithRelativeFormat];
+    frame = cell.frame;
+    frame.size.width = tableView.frame.size.width;
+    [cell setFrame:frame];
     [cell sizeToFit];
+    //NSLog(@"cell for row %lu sized(%f,%f)\n", (unsigned long)[indexPath indexAtPosition:1], cell.frame.size.width, cell.frame.size.height);
     return cell;
 }
 

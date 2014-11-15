@@ -10,11 +10,10 @@ Add a field in prefs for developers to specify a test server URL
 
 Bugs (in rough order of importance)
 Get the preferences UI to flow correctly when rotating the phone
-Figure out why the text is garbled after dismissing the preferences window
 Fix alignment of the buttons in the header
 Don't allow posting if the user does not have a name specified
 When pulling down to refresh, I want the spinning gear below the header, not above it
-Figure out the right text encoding to use with JSON data to get rid of that odd warning
+Figure out the right text encoding to use with JSON data to get rid of that odd warning in the console
 
 Refactoring:
 Put the header view (text input, button, and info button) into it's own XIB so it's easier to edit
@@ -37,3 +36,4 @@ Done:
 The keyboard covers up the "Done" button when using preferences
 On first time lauch, go straight to the prefs window
 Add a preference to hit a test server.
+Figure out why the text is garbled after dismissing the preferences window
