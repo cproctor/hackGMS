@@ -46,7 +46,6 @@ NSString *useTestServerKey = @"useTestServer";
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     BOOL useTestServer = [sender isOn];
     [ud setBool:useTestServer forKey:useTestServerKey];
-    [(BruceTVC *)_callingViewController networkingClient].useTestServer = useTestServer;
 }
 
 

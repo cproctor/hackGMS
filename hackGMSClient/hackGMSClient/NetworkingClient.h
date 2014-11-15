@@ -21,7 +21,6 @@ NSString *kMessageDateAsStringWithRelativeFormat;
 @property (strong, nonatomic) id fetchCallBackObject;
 @property (nonatomic) SEL fetchCallbackSelector;
 @property (strong, nonatomic) NSMutableArray *messages;
-@property (nonatomic) BOOL useTestServer;
 
 - (void)postMessageToServer:(NSString *)message withObject:(id)object selector:(SEL)selector;
 - (void)fetchMessagesWithObject:(id)obj selector:(SEL)selector;

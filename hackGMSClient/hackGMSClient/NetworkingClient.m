@@ -7,6 +7,7 @@
 //
 
 #import "NetworkingClient.h"
+#import "PreferencesViewController.h"
 
 NSString *kMessageText = @"text";
 NSString *kMessageDateAsString = @"date";
@@ -60,7 +61,7 @@ NSString *testServerURLForMessages = @"http://localhost:5000/api/messages";
     _fetchCallbackSelector = selector;
     
 
-    if (_useTestServer) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:useTestServerKey]) {
         url = [NSURL URLWithString:testServerURLForMessages];
     } else {
         url = [NSURL URLWithString:URLForMessages];
@@ -166,7 +167,7 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
     _postCallBackObject = object;
     _postCallbackSelector = selector;
     
-    if (_useTestServer)
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:useTestServerKey])
         URLstring = testServerURLString;
     else
         URLstring = serverURLString;
