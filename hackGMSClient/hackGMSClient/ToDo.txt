@@ -7,6 +7,8 @@ Only leave preferences once the user has provided a first and last name
 On each message send and fetch, the client should send along a unique device identifier. This would allow the server to build an "ignore" list for abusers
 Get a version that runs in Spanish
 Add a field in prefs for developers to specify a test server URL
+Need a version number label in the preferences
+Add a footer, move the preferences to the footer, add a link for Girls Middle School
 
 Bugs (in rough order of importance)
 Get the preferences UI to flow correctly when rotating the phone
