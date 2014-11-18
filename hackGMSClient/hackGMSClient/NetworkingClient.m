@@ -258,10 +258,14 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
         NSMutableDictionary *newDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
         
         date = [rfc3339DateFormatter dateFromString:dateAsString];
-        [newDict setObject:date forKey:kMessageDateAsNSDateKey];
-        formattedDateString = [self formattedDateForNSDate:date];
-        [newDict setObject:formattedDateString forKey:kMessageDateAsStringWithRelativeFormat];
-        [newMessagesArray insertObject:newDict atIndex:0];
+        if (date) {
+            [newDict setObject:date forKey:kMessageDateAsNSDateKey];
+            formattedDateString = [self formattedDateForNSDate:date];
+            [newDict setObject:formattedDateString forKey:kMessageDateAsStringWithRelativeFormat];
+            [newMessagesArray insertObject:newDict atIndex:0];
+        } else {
+            NSLog(@"unable to build a date from string:%@, ignoring messaage:%@\n", dateAsString, [dict objectForKey:kMessageText]);
+        }
     }
     
     _messages = newMessagesArray;
