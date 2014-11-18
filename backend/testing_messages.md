@@ -24,3 +24,9 @@ When we store things in a database, they will still be there next time we run
 the program. 
     
 
+You can load up the database with the load100Messages.sql.
+
+% sqlite3 hack_gms_database.sql
+SQLite version 3.8.5 2014-08-15 22:37:57
+sqlite> .read load100Messages.sql
+
