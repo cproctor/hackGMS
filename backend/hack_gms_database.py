@@ -71,7 +71,7 @@ class HackGMSDatabase(object):
             HackGMSDatabase.create_message_table_if_necessary()
     
         cursor = connection.cursor()
-        cursor.execute("select * from messages where julianday('now') - julianday(messages.date) < 2 order by date");
+        cursor.execute("select * from messages where julianday('now') - julianday(messages.date) < 2 order by date desc");
         message_records = cursor.fetchall()
         cursor.close()
         return message_records
