@@ -1,7 +1,6 @@
 body {
     background-color: #003366;
     min-height: 300px;
-    background-image:url('href="{{ url_for('style', filename='frontend/static/style/Background.jpg') }}" rel="img"')
 }
 
 #box {
@@ -64,6 +63,4 @@ li {
 
 .message {
     border: thin solid #99CCFF;
-    
 }
-
