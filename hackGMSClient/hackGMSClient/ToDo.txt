@@ -1,6 +1,6 @@
 Features (in rough order of importance)
 If the CoreLocation manager tells us we are not authorized to use CL, we should alert the user and move the Automatic switch back to off
-Figure out password and auth details
+Figure out password and auth details (https://flask-login.readthedocs.org/en/latest/)
 Add ability to delete messages that the user posted
 Add some colors and make it looks nicer
 Only leave preferences once the user has provided a first and last name
@@ -24,6 +24,11 @@ Project tasks
 Make an icon
 Set project to work with iOS 7 or later (maybe back to iOS 6 if we can find devices to test with)
 
+Administration Tasks:
+Get an SSL certificate
+Set up an administration UI for changing the password
+Set up an administration UI for blocking a user
+
 
 Testing Tasks:
 Test on device with no cell modem
@@ -39,3 +44,6 @@ The keyboard covers up the "Done" button when using preferences
 On first time lauch, go straight to the prefs window
 Add a preference to hit a test server.
 Figure out why the text is garbled after dismissing the preferences window
+Fix the sort order so new messages appear a the top
+When starting the app, sometimes the screen doesn't refresh.
+The app should play a sound when it triggers the automatic "I have arrived" post, maybe a trumpet playing
