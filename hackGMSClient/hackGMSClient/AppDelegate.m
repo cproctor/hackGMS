@@ -32,6 +32,11 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    BruceTVC *rootViewController = (BruceTVC *)navController.viewControllers[0];
+    
+    // Sync up with the server
+    [rootViewController fetchNewData];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
