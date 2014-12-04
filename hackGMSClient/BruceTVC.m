@@ -7,6 +7,8 @@
 //
 
 #import "BruceTVC.h"
+#include <AudioToolbox/AudioToolbox.h>
+
 
 @interface BruceTVC ()
 
@@ -36,8 +38,20 @@
 
 }
 
+-(void)playArrivalSound
+{
+    static SystemSoundID soundFileObject = 0;
+    
+    if (!soundFileObject) {
+        NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"024971_Trumpet_Charge_Sound_Effect" withExtension:@"caf"];
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)(soundURL), &soundFileObject);
+    }
+    AudioServicesPlaySystemSound(soundFileObject);
+}
+
 - (void)arrivedAtGMS
 {
+    [self playArrivalSound];
     [self sendMessageTextToServer:@"Arrived at GMS"];
 }
 

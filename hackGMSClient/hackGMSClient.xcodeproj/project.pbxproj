@@ -18,6 +18,7 @@
 		D003C4E61A1322E600F0E354 /* TrackArrivals.m in Sources */ = {isa = PBXBuildFile; fileRef = D003C4E51A1322E600F0E354 /* TrackArrivals.m */; };
 		D003C4E91A13235200F0E354 /* NetworkingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D003C4E81A13235200F0E354 /* NetworkingClient.m */; };
 		D003C4EB1A133EC000F0E354 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D003C4EA1A133EC000F0E354 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		D013F4601A302BE0004755F1 /* 024971_Trumpet_Charge_Sound_Effect.caf in Resources */ = {isa = PBXBuildFile; fileRef = D013F45F1A302BE0004755F1 /* 024971_Trumpet_Charge_Sound_Effect.caf */; };
 		D0BB62141A13C4F100411615 /* GMS_Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D0BB62121A13C4F100411615 /* GMS_Logo.jpg */; };
 		D0BB62151A13C4F100411615 /* GPS Test Locations.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D0BB62131A13C4F100411615 /* GPS Test Locations.rtf */; };
 		D0BB62171A13C54900411615 /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0BB62161A13C54900411615 /* ToDo.txt */; };
@@ -54,6 +55,7 @@
 		D003C4E71A13235200F0E354 /* NetworkingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingClient.h; sourceTree = "<group>"; };
 		D003C4E81A13235200F0E354 /* NetworkingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingClient.m; sourceTree = "<group>"; };
 		D003C4EA1A133EC000F0E354 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D013F45F1A302BE0004755F1 /* 024971_Trumpet_Charge_Sound_Effect.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 024971_Trumpet_Charge_Sound_Effect.caf; sourceTree = "<group>"; };
 		D0BB62121A13C4F100411615 /* GMS_Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = GMS_Logo.jpg; path = hackGMSClient/GMS_Logo.jpg; sourceTree = "<group>"; };
 		D0BB62131A13C4F100411615 /* GPS Test Locations.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "GPS Test Locations.rtf"; path = "hackGMSClient/GPS Test Locations.rtf"; sourceTree = "<group>"; };
 		D0BB62161A13C54900411615 /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		2FF10B381A129EDD0072899A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D013F45F1A302BE0004755F1 /* 024971_Trumpet_Charge_Sound_Effect.caf */,
 				2FF10B391A129EDD0072899A /* Info.plist */,
 				2FF10B3A1A129EDD0072899A /* main.m */,
 				D0BB62161A13C54900411615 /* ToDo.txt */,
@@ -232,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D013F4601A302BE0004755F1 /* 024971_Trumpet_Charge_Sound_Effect.caf in Resources */,
 				D0BB62151A13C4F100411615 /* GPS Test Locations.rtf in Resources */,
 				2FF10B441A129EDD0072899A /* Main.storyboard in Resources */,
 				D0BB62171A13C54900411615 /* ToDo.txt in Resources */,

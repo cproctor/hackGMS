@@ -48,6 +48,23 @@ class HackGMSDatabase(object):
         except sqlite3.Error as e:
             if e.args[0] != "table messages already exists":
                 print "An error occurred:", e.args[0]
+
+    @classmethod
+    def create_user_table_if_necessary(cls):
+        try:
+            cursor = connection.cursor()
+            cursor.execute("""
+                CREATE TABLE users (
+                    id INTEGER PRIMARY KEY,
+                    text fullname
+                );
+            """)
+            connection.commit();
+            cursor.close();    
+        except sqlite3.Error as e:
+            if e.args[0] != "table messages already exists":
+                print "An error occurred:", e.args[0]
+
         
 
     # Destroy everything in the database, even the structure of the tables,
@@ -57,8 +74,10 @@ class HackGMSDatabase(object):
         cursor = connection.cursor()
         # Bye.
         cursor.execute("DROP TABLE IF EXISTS messages;")
+        cursor.execute("DROP TABLE IF EXISTS users;");
         # Oh hello there!
         HackGMSDatabase.create_message_table_if_necessary()
+        HackGMSDatabase.create_user_table_if_necessary()
         cursor.close()
 
 
