@@ -11,6 +11,7 @@
 #import "TrackArrivals.h"
 #import "NetworkingClient.h"
 
+
 @interface BruceTVC : UITableViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -27,5 +28,7 @@
 -(void)startTrackingArrivalsAtGMS:(BOOL)yn;
 
 -(void)preferencesFinished;
+-(void)fetchNewData;
+
 
 @end
