@@ -2,14 +2,9 @@
 once for each message that needs to be displayed. If you change this template,
 the appearance of each message will be affected. -->
 <div class="message">
-	<style>
-	table { border-collapse: separate; }
-	td { border: solid 1px #000; }
-	tr:first-child td:first-child { -webkit-border-top-left-radius: 15px; }
-	tr:first-child td:last-child { -webkit-border-top-left-radius: 15px; }
-	tr:last-child td:first-child { -webkit-border-top-left-radius: 15px; }
-	tr:last-child td:last-child { -webkit-border-top-left-radius: 15px; }
-	</style>
-    <p>{{message.text}}</p>
+	
+	
+    <p style="border-radius; 80px;>{{message.text}}</p>
     <p style="color:blue;">Created {{message.date.toLocaleDateString("en-US")}} <button ng-click="deleteMessage(message);"style="color:blue;">DELETE</button></p>
+    <p ></p>
 </div>
