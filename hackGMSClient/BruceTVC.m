@@ -32,10 +32,16 @@
     } else {
         fullMessage = message;
     }
-    [_networkingClient postMessageToServer:fullMessage withObject:self selector:@selector(fetchNewData)];
+    [_networkingClient postMessageToServer:fullMessage withObject:self selector:@selector(finishedSendingMessage)];
     [_messageField resignFirstResponder];
     _messageField.text = @"";
 
+}
+
+-(void)finishedSendingMessage
+{
+    [self playArrivalSound];
+    [self fetchNewData];
 }
 
 -(void)playArrivalSound
@@ -51,7 +57,6 @@
 
 - (void)arrivedAtGMS
 {
-    [self playArrivalSound];
     [self sendMessageTextToServer:@"Arrived at GMS"];
 }
 

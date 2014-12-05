@@ -40,6 +40,7 @@ Teston iPhone 4S, 5S, 6, 6 plus
 Test how the app works when the network is dead and/or flakey
 
 Done:
+Make the sound play only after a successful post to the server, if the server is down then no sound plays
 The keyboard covers up the "Done" button when using preferences
 On first time lauch, go straight to the prefs window
 Add a preference to hit a test server.
