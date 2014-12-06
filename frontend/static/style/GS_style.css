@@ -63,4 +63,7 @@ li {
 
 .message {
     border: thin solid #99CCFF;
+    text-align:	left;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
 }
