@@ -2,9 +2,7 @@
 once for each message that needs to be displayed. If you change this template,
 the appearance of each message will be affected. -->
 <div class="message">
-	
-	
-    <p style="border-radius; 80px;>{{message.text}}</p>
+    <p>{{message.text}}</p>
     <p style="color:blue;">Created {{message.date.toLocaleDateString("en-US")}} <button ng-click="deleteMessage(message);"style="color:blue;">DELETE</button></p>
     <p ></p>
 </div>
