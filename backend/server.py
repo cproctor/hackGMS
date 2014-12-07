@@ -27,6 +27,16 @@ from helpers import get_date_from_json, get_settings, set_up_log
 # Create the app
 app = Flask(__name__, template_folder="../frontend", static_folder="../frontend/static")
 
+# Before the first request comes in, check to make sure the database has the required 
+# tables in place. Otherwise, create them.
+@app.before_first_request
+def make_sure_the_database_is_ready():
+    if HackGMSDatabase.schema_is_present():
+        app.logger.info(" * All required tables were found in the database.")
+    else:
+        app.logger.warn(" * Initializing the database.")
+        HackGMSDatabase.initialize()
+
 # This tells the app to close the database connection every time a request finishes
 @app.teardown_appcontext
 def when_the_request_ends(exception):

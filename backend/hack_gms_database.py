@@ -18,6 +18,7 @@ location_of_this_folder = path.dirname(path.abspath(__file__))
 database_file_name = "hack_gms_database.sqlite3"
 database_file = path.join(location_of_this_folder, database_file_name)
 
+# Gets a database connection, creating it if necessary.
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -26,78 +27,58 @@ def get_db():
                 check_same_thread=False)
     return db
 
-# When get_db is called, a new database connection is created if none
-# already exists for this request. We need a function to close the 
-# connection when the request ends; 
+# Closes the database connection, if it's still open.
 # This function should be called at the app.teardown_appcontext hook
 def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
 
-create_table_test = 0
-
-
 class HackGMSDatabase(object):
 
-    @classmethod
-    def create_message_table_if_necessary(cls):
-        try:
-            cursor = get_db().cursor()
-            cursor.execute("""
-                CREATE TABLE messages (
-                    id INTEGER PRIMARY KEY,
-                    text TEXT,
-                    author TEXT,
-                    date TIMESTAMP
-                );
-            """)
-            get_db().commit();
-            cursor.close();    
-        except sqlite3.Error as e:
-            if e.args[0] != "table messages already exists":
-                print "An error occurred:", e.args[0]
+    required_tables = ['messages', 'users']
 
+    # Checks whether the schema (the table structure) is present in the 
+    # database. When the app starts up, it will use this function to 
+    # check whether we need to initialize. 
     @classmethod
-    def create_user_table_if_necessary(cls):
-        try:
-            cursor = get_db().cursor()
-            cursor.execute("""
-                CREATE TABLE users (
-                    id INTEGER PRIMARY KEY,
-                    text fullname
-                );
-            """)
-            get_db().commit();
-            cursor.close();    
-        except sqlite3.Error as e:
-            if e.args[0] != "table messages already exists":
-                print "An error occurred:", e.args[0]
-
-        
+    def schema_is_present(cls):
+        cursor = get_db().cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        table_names = [name[0] for name in cursor.fetchall()]
+        for table_name in cls.required_tables:
+            if not table_name in table_names:
+                return False
+        return True
 
     # Destroy everything in the database, even the structure of the tables,
     # and rebuild it from scratch. Careful with this one!
     @classmethod
     def initialize(cls):
         cursor = get_db().cursor()
-        # Bye.
         cursor.execute("DROP TABLE IF EXISTS messages;")
         cursor.execute("DROP TABLE IF EXISTS users;");
-        # Oh hello there!
-        HackGMSDatabase.create_message_table_if_necessary()
-        HackGMSDatabase.create_user_table_if_necessary()
+        cursor.execute("""
+            CREATE TABLE messages (
+                id INTEGER PRIMARY KEY,
+                text TEXT,
+                author TEXT,
+                date TIMESTAMP
+            );
+        """)
+        cursor.execute("""
+            CREATE TABLE users (
+                id INTEGER PRIMARY KEY,
+                text fullname
+            );
+        """)
         cursor.close()
+        get_db().commit();
 
 
     # Get all the message records.
     @classmethod
     def get_message_records(cls):
-        global create_table_test
-        if create_table_test == 0:
-            create_table_test = 1
-            HackGMSDatabase.create_message_table_if_necessary()
-    
         cursor = get_db().cursor()
         cursor.execute("select * from messages where julianday('now') - julianday(messages.date) < 2 order by date desc");
         message_records = cursor.fetchall()
@@ -155,5 +136,3 @@ class HackGMSDatabase(object):
         cursor.close()
         message.id = None
         
-
-
