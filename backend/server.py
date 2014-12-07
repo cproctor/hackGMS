@@ -42,6 +42,14 @@ def make_sure_the_database_is_ready():
 def when_the_request_ends(exception):
     close_connection(exception)
 
+@app.errorhandler(500)
+def when_something_goes_horribly_wrong(exception):
+    app.logger.exception(exception)
+    return "Something went wrong. Sorry."
+
+    # We need an error page!
+    # return render_template('error.html')
+
 
 # Here we are saying what should happen when a user visits /, or the main page
 # of the site
