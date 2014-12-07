@@ -155,7 +155,7 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
     [_postCallBackObject performSelectorOnMainThread:_postCallbackSelector withObject:nil waitUntilDone:NO];
 }
 
-- (void)postMessageToServer:(NSString *)message withObject:(id)object selector:(SEL)selector
+- (void)postMessageToServer:(NSString *)message author:(NSString *)author withObject:(id)object selector:(SEL)selector;
 {
     NSData *JSONData;
     NSError *error;
@@ -181,7 +181,7 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
     [rfc3339DateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"];
     [rfc3339DateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
-    NSDictionary *JSONDict = [NSDictionary dictionaryWithObjectsAndKeys:message, @"text", [rfc3339DateFormatter stringFromDate:[NSDate date]], @"date", nil];
+    NSDictionary *JSONDict = [NSDictionary dictionaryWithObjectsAndKeys:message, @"text", [rfc3339DateFormatter stringFromDate:[NSDate date]], @"date", author, @"author", nil];
     
     //NSDictionary *JSONDict = [NSDictionary dictionaryWithObject:message forKey:@"text"];
     JSONData = [NSJSONSerialization dataWithJSONObject:JSONDict options:0 error:&error];

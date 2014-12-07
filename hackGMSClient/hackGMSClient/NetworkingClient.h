@@ -22,7 +22,7 @@ NSString *kMessageDateAsStringWithRelativeFormat;
 @property (nonatomic) SEL fetchCallbackSelector;
 @property (strong, nonatomic) NSMutableArray *messages;
 
-- (void)postMessageToServer:(NSString *)message withObject:(id)object selector:(SEL)selector;
+- (void)postMessageToServer:(NSString *)message author:(NSString *)author withObject:(id)object selector:(SEL)selector;
 - (void)fetchMessagesWithObject:(id)obj selector:(SEL)selector;
 
 @end

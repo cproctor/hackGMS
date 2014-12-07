@@ -24,15 +24,9 @@
 - (void)sendMessageTextToServer:(NSString *)message
 {
     NSString *username;
-    NSString *fullMessage;
     
     username = [[NSUserDefaults standardUserDefaults] stringForKey:userNameKey];
-    if (username && [username length]) {
-        fullMessage = [NSString stringWithFormat:@"%@: %@", [[NSUserDefaults standardUserDefaults] stringForKey:userNameKey], message];
-    } else {
-        fullMessage = message;
-    }
-    [_networkingClient postMessageToServer:fullMessage withObject:self selector:@selector(finishedSendingMessage)];
+    [_networkingClient postMessageToServer:message author:username withObject:self selector:@selector(finishedSendingMessage)];
     [_messageField resignFirstResponder];
     _messageField.text = @"";
 
@@ -171,6 +165,9 @@ NSString *hackGMSCellIdentifier = @"hackGMS";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGRect frame;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hackGMSCellIdentifier];
+    NSString *author;
+    NSString *dateWithFancyFormatting;
+    NSString *detailText;
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:hackGMSCellIdentifier];
@@ -181,7 +178,10 @@ NSString *hackGMSCellIdentifier = @"hackGMS";
     // Configure the cell...
     NSDictionary *message = [_messages objectAtIndex:[indexPath indexAtPosition:1]];
     cell.textLabel.text  = [message objectForKey:@"text"];
-    cell.detailTextLabel.text = [message objectForKey:kMessageDateAsStringWithRelativeFormat];
+    author = [message objectForKey:@"author"];
+    dateWithFancyFormatting = [message objectForKey:kMessageDateAsStringWithRelativeFormat];
+    detailText = [NSString stringWithFormat:@"%@: %@", author, dateWithFancyFormatting];
+    cell.detailTextLabel.text = detailText;
     frame = cell.frame;
     frame.size.width = tableView.frame.size.width;
     [cell setFrame:frame];
