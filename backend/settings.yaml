@@ -4,4 +4,7 @@
 host: '0.0.0.0'
 port: 5000
 password: 'password'
+debug_mode: true
+log_file: 'hack_gms_log.log'
+log_level: 'DEBUG'
 

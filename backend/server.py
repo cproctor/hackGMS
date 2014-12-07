@@ -12,34 +12,20 @@
 
 # When you want to stop the server, press control-C.
 
-# flask is a small web application framework we'll use. Most of the hard work
-# is already done for us!
-# You can read about flask here: http://flask.pocoo.org/
+# The following libraries were written by other people. You can read all about
+# them--look them up online!
 from flask import Flask, render_template, make_response, request
+from datetime import datetime
+import json
 
-# Then we'll be wanting the Message object because it has lots of great powers.
-# See message.py to find out about this one. We also need access to the database
-# for creating and deleting records.
+# Then we will import stuff from other files in backend. You can read about
+# these functions by opening the other files in this folder.
 from message import Message
 from hack_gms_database import HackGMSDatabase
-from helpers import get_date_from_json
-
-from datetime import datetime
-
-# Here are a few pretty standard libraries... read up on them if interested.
-import json
-import yaml
-import os
-
-# We'll go ahead and load the settings from the settings file.
-
-settings_filename = os.path.join(os.path.dirname(__file__), 'settings.yaml')
-with open(settings_filename) as settings_file:
-    settings = yaml.load(settings_file.read())
+from helpers import get_date_from_json, get_settings, set_up_log
 
 # There, see! We made the app. 
 app = Flask(__name__, template_folder="../frontend", static_folder="../frontend/static")
-app.debug=True
 
 
 # Here we are saying what should happen when a user visits /, or the main page
@@ -114,4 +100,9 @@ def deleteMessage(message_id):
 
 
 # Now that we've created the app, let's run it!
+settings = get_settings()
+set_up_log()
+app.debug = settings['debug_mode']
+app.logger.info(" * Press Control+C to stop the server. Log messages are being "+
+        "saved to %s" % settings['log_file'])
 app.run(host=settings['host'], port=settings['port'])
