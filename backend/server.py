@@ -21,11 +21,16 @@ import json
 # Then we will import stuff from other files in backend. You can read about
 # these functions by opening the other files in this folder.
 from message import Message
-from hack_gms_database import HackGMSDatabase
+from hack_gms_database import HackGMSDatabase, close_connection
 from helpers import get_date_from_json, get_settings, set_up_log
 
-# There, see! We made the app. 
+# Create the app
 app = Flask(__name__, template_folder="../frontend", static_folder="../frontend/static")
+
+# This tells the app to close the database connection every time a request finishes
+@app.teardown_appcontext
+def when_the_request_ends(exception):
+    close_connection(exception)
 
 
 # Here we are saying what should happen when a user visits /, or the main page
