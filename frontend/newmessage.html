@@ -1,1 +1,34 @@
-<!-- <<<<<<< Updated upstream=======<<<<<<< HEAD --><!DOCTYPE html><html>    <head>         <link href="{{ url_for('static', filename='style/GS_style.css') }}" rel="stylesheet">    </head>    <body ng-app="hackGMS" ng-controller="hackGMSController">        <div id="box">            <h1>Add a Message</h1>            <div id="header">                <ul class="menu">                    <li><a href="/">Home</a></li>                    <li><a href="about">About hackGMS</a></li>                    <li class="current"><a href="newmessage">Add a Message</a></li>                </ul>            </div>            <p><b>Add a new message here:</b></p>            <input ng-model="messageText"></input>            <button ng-click="addMessage();">Add a message</button>                        <!-- <form action="">                <input type="checkbox" name="importance" value="high">High Importance<br>                <input type="checkbox" name="importance" value="med">Medium Importance<br>                <input type="checkbox" name="importance" value="low">Low Importance            </form> -->                        <p>Messages:<p>            <div ng-repeat="message in messages">                <div gms-message-delete></div>            </div>            </div>       </div>        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>        <script src="{{ url_for('static', filename='js/hack_gms_app.js') }}"></script>    </body></html>
+<!DOCTYPE html>
+<html>
+    <head>
+         <link href="{{ url_for('static', filename='style/GS_style.css') }}" rel="stylesheet">
+    </head>
+    <body ng-app="hackGMS" ng-controller="hackGMSController">
+        <div id="box">
+            <h1>Add a Message</h1>
+            <div id="header">
+                <ul class="menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about">About hackGMS</a></li>
+                    <li class="current"><a href="newmessage">Add a Message</a></li>
+                </ul>
+            </div>
+            <p><b>Add a new message here:</b></p>
+            <input ng-model="messageText"></input>
+            <p>Message author:</p>
+            <input ng-model="messageAuthor"></input>
+            <button ng-click="addMessage();">Add a message</button>
+            <!-- <form action="">
+                <input type="checkbox" name="importance" value="high">High Importance<br>
+                <input type="checkbox" name="importance" value="med">Medium Importance<br>
+                <input type="checkbox" name="importance" value="low">Low Importance            </form> -->                        <p>Messages:<p>
+            <div ng-repeat="message in messages">
+                <div gms-message-delete></div>
+            </div>
+            </div>
+       </div>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="{{ url_for('static', filename='js/hack_gms_app.js') }}"></script>
+    </body>
+</html>

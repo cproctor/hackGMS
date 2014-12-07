@@ -14,6 +14,7 @@ angular.module("hackGMS", [])
     $scope.addMessage = function() {
         var newMessageData = {
             text: $scope.messageText,
+            author: $scope.messageAuthor,
             date: new Date()
         };
         $http.post('api/messages/create', newMessageData)

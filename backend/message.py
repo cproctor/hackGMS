@@ -66,9 +66,10 @@ class Message(object):
     # your ear, you will not accidentally touch someone else's ear. But 
     # instances of a class will not know themselves unless they have a 
     # variable they can use to locate themselves. Weird!
-    def __init__(self, id=None, text=None, date=None):
+    def __init__(self, id=None, text=None, author=None, date=None):
         self.id = id
         self.text = text
+        self.author = author
         self.date = date
 
     # We will use this method to check whether the instance is valid. This is 
@@ -81,6 +82,8 @@ class Message(object):
         self.errors = []
         if not isinstance(self.text, basestring):
             self.errors.append("text (%s) must be a string" % self.text)
+        if not isinstance(self.author, basestring):
+            self.errors.append("author (%s) must be a string" % self.date)
         if not isinstance(self.date, datetime):
             self.errors.append("date (%s) must be a date" % self.date)
         return not any(self.errors)
@@ -102,6 +105,7 @@ class Message(object):
         return {
             "id": self.id,
             "text": self.text,
+            "author": self.author,
             "date": self.date.isoformat()
         }
 

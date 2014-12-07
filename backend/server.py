@@ -90,8 +90,9 @@ def getMessages():
 @app.route('/api/messages/create', methods=["POST"])
 def createNewMessage():
     text = request.json.get("text")
+    author = request.json.get("author")
     date = datetime.utcnow()
-    new_message = Message(text=text, date=date)
+    new_message = Message(text=text, author=author, date=date)
     if new_message.is_valid():
         HackGMSDatabase.create_message_record(new_message)
         response = make_response(json.dumps(new_message.ready_for_json()), 200)

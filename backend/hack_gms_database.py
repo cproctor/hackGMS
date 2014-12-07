@@ -109,7 +109,7 @@ class HackGMSDatabase(object):
     def create_message_record(cls, message):
         cursor = get_db().cursor()
         cursor.execute(
-            "INSERT INTO messages VALUES (NULL,?,?);", 
+            "INSERT INTO messages VALUES (NULL,?,?,?);", 
             (message.text, message.author, message.date)
         )
         get_db().commit()
@@ -121,7 +121,7 @@ class HackGMSDatabase(object):
     def update_message_record(cls, message):
         cursor = get_db().cursor()
         cursor.execute(
-            "UPDATE messages SET (text= ?, date= ? ) WHERE id = ?;",
+            "UPDATE messages SET (text= ?, author= ?, date= ? ) WHERE id = ?;",
             (message.text, message.author, message.date, (message.id,))
         )
         get_db().commit()
