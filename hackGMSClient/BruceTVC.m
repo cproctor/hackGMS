@@ -167,7 +167,6 @@ NSString *hackGMSCellIdentifier = @"hackGMS";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hackGMSCellIdentifier];
     NSString *author;
     NSString *dateWithFancyFormatting;
-    NSString *detailText;
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:hackGMSCellIdentifier];
@@ -177,11 +176,10 @@ NSString *hackGMSCellIdentifier = @"hackGMS";
     
     // Configure the cell...
     NSDictionary *message = [_messages objectAtIndex:[indexPath indexAtPosition:1]];
-    cell.textLabel.text  = [message objectForKey:@"text"];
     author = [message objectForKey:@"author"];
+    cell.textLabel.text  = [NSString stringWithFormat:@"%@: %@", author, [message objectForKey:@"text"]];
     dateWithFancyFormatting = [message objectForKey:kMessageDateAsStringWithRelativeFormat];
-    detailText = [NSString stringWithFormat:@"%@: %@", author, dateWithFancyFormatting];
-    cell.detailTextLabel.text = detailText;
+    cell.detailTextLabel.text = dateWithFancyFormatting;
     frame = cell.frame;
     frame.size.width = tableView.frame.size.width;
     [cell setFrame:frame];
