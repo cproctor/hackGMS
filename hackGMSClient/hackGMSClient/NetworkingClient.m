@@ -26,33 +26,10 @@ NSString *testServerURLForMessages = @"http://localhost:5000/api/messages";
 
 -(id)init
 {
-    NSDictionary *messageDict;
-    NSArray *keys = [NSArray arrayWithObjects:kMessageText, kMessageDateAsStringWithRelativeFormat, nil];
     self = [super init];
-    
     _messages = [[NSMutableArray alloc] init];
-    messageDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"hi there", @"Today, 5:15", nil] forKeys:keys];
-    [_messages addObject:messageDict];
-    messageDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"2nd message, it needs to be long enough that the text will wrap around to a second line", @"Today, 5:10", nil] forKeys:keys];
-    [_messages addObject:messageDict];
-    messageDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"3rd message, it needs to be very, very, long. We want tex that will flow around so that we can really test out if our cell layout logic is working properly. Blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah", @"Today, 5:01", nil] forKeys:keys];
-    [_messages addObject:messageDict];
-
-    
     return self;
 }
-
-/*
- - (void)postMessageToServer:(NSString *)message
-{
-    NSDictionary *messageDict;
-    NSArray *keys = [NSArray arrayWithObjects:kMessageText, kMessageDateAsStringWithRelativeFormat, nil];
-    
-    messageDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:message, @"now", nil] forKeys:keys];
-    
-    [_messages insertObject:messageDict atIndex:0];
-}
-*/
 
 - (void)fetchMessagesWithObject:(id)obj selector:(SEL)selector
 {
