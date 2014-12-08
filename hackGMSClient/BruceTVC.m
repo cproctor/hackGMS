@@ -21,20 +21,28 @@
     [self presentViewController:_preferencesController animated:YES completion:NULL];
 }
 
-- (void)sendMessageTextToServer:(NSString *)message
+- (void)sendMessageTextToServer:(NSString *)message playSoundAfterSuccess:(BOOL)yn
 {
     NSString *username;
     
     username = [[NSUserDefaults standardUserDefaults] stringForKey:userNameKey];
-    [_networkingClient postMessageToServer:message author:username withObject:self selector:@selector(finishedSendingMessage)];
+    [_networkingClient postMessageToServer:message
+                                    author:username
+                                withObject:self
+                                  selector:yn ? @selector(finishedSendingMessageAndPlaySound) : @selector(finishedSendingMessage)];
     [_messageField resignFirstResponder];
     _messageField.text = @"";
 
 }
 
--(void)finishedSendingMessage
+-(void)finishedSendingMessageAndPlaySound
 {
     [self playArrivalSound];
+    [self fetchNewData];
+}
+
+-(void)finishedSendingMessage
+{
     [self fetchNewData];
 }
 
@@ -51,7 +59,7 @@
 
 - (void)arrivedAtGMS
 {
-    [self sendMessageTextToServer:@"Arrived at GMS"];
+    [self sendMessageTextToServer:@"Arrived at GMS" playSoundAfterSuccess:YES];
 }
 
 
@@ -61,7 +69,7 @@
     
     // If the field was empty, don't bother sending anything
     if (messageFieldText != nil && [messageFieldText length] != 0) {
-        [self sendMessageTextToServer:messageFieldText];
+        [self sendMessageTextToServer:messageFieldText playSoundAfterSuccess:NO];
         [_messageField resignFirstResponder];
         _messageField.text = @"";
     }
