@@ -11,7 +11,7 @@
 @implementation TrackArrivals
 
 CLLocationCoordinate2D GirlsMiddleSchoolLocation = {37.4352, -122.11};
-CLLocationDistance RadiusForRegion = 15.0;
+CLLocationDistance RadiusForRegion = 50.0;
 
 - (id)init
 {
