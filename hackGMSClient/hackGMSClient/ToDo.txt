@@ -16,6 +16,7 @@ Fix alignment of the buttons in the header
 Don't allow posting if the user does not have a name specified
 When pulling down to refresh, I want the spinning gear below the header, not above it
 Figure out the right text encoding to use with JSON data to get rid of that odd warning in the console
+If we cannot post a message to the server, we should play an error sound and display some kind of error
 
 Refactoring:
 Put the header view (text input, button, and info button) into it's own XIB so it's easier to edit
