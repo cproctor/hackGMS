@@ -32,6 +32,8 @@
                                   selector:yn ? @selector(finishedSendingMessageAndPlaySound) : @selector(finishedSendingMessage)];
     [_messageField resignFirstResponder];
     _messageField.text = @"";
+    
+    //[self performSelector:@selector(sendMessageTextToServer:playSoundAfterSuccess:) withObject:@"Hi there, this rocks!" afterDelay:135.0];
 
 }
 
@@ -110,6 +112,10 @@
     } else {
         [self fetchNewData];
     }
+    
+    //[self performSelector:@selector(fetchNewData) withObject:nil afterDelay:30.0];
+    //[self performSelector:@selector(sendMessageTextToServer:playSoundAfterSuccess:) withObject:@"Hi there, this rocks!" afterDelay:45.0];
+    
 }
 
 -(void)newMessages:(NSArray *)newMessages
@@ -123,6 +129,7 @@
 
 {
     [_networkingClient fetchMessagesWithObject:self selector:@selector(newMessages:)];
+    //[self performSelector:@selector(fetchNewData) withObject:nil afterDelay:45.0];
 }
 
 
