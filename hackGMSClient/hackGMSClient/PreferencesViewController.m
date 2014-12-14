@@ -51,6 +51,7 @@ NSString *useTestServerKey = @"useTestServer";
 
 - (IBAction)done:(id)sender
 {
+    [_userNameField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:^{
         [(BruceTVC *)_callingViewController preferencesFinished];
     }];
