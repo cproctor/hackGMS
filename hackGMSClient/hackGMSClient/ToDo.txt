@@ -49,3 +49,4 @@ Figure out why the text is garbled after dismissing the preferences window
 Fix the sort order so new messages appear a the top
 When starting the app, sometimes the screen doesn't refresh.
 The app should play a sound when it triggers the automatic "I have arrived" post, maybe a trumpet playing
+Some messages are not the right height, they are drawing outside their frame.
