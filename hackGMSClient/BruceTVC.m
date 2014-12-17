@@ -196,10 +196,10 @@ NSString *hackGMSCellIdentifier = @"hackGMS";
     dateWithFancyFormatting = [message objectForKey:kMessageDateAsStringWithRelativeFormat];
     cell.detailTextLabel.text = dateWithFancyFormatting;
     frame = cell.frame;
-    frame.size.width = tableView.frame.size.width;
+    frame.size.width = tableView.frame.size.width - 1.0;
     [cell setFrame:frame];
     [cell sizeToFit];
-    //NSLog(@"cell for row %lu sized(%f,%f)\n", (unsigned long)[indexPath indexAtPosition:1], cell.frame.size.width, cell.frame.size.height);
+    //NSLog(@"cell:%p for row %lu, text %@ sized(%f,%f)\n", cell, (unsigned long)[indexPath indexAtPosition:1], cell.textLabel.text, cell.frame.size.width, cell.frame.size.height);
     return cell;
 }
 
