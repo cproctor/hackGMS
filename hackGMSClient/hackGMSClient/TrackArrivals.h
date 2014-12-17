@@ -13,7 +13,8 @@
 @interface TrackArrivals : NSObject <CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLRegion *trackingRegion;
+@property (strong, nonatomic) CLRegion *roughTrackingRegion;
+@property (strong, nonatomic) CLLocation *centerOfBackParkingLot;
 @property (strong, nonatomic) id callbackObject;
 @property (nonatomic) SEL callbackSelector;
 

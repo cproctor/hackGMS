@@ -10,8 +10,10 @@
 
 @implementation TrackArrivals
 
-CLLocationCoordinate2D GirlsMiddleSchoolLocation = {37.4352, -122.11};
-CLLocationDistance RadiusForRegion = 15.0;
+CLLocationCoordinate2D GirlsMiddleSchoolLocation = {37.4352, -122.11035};
+CLLocationDistance RoughRadiusForRegion = 100.0;
+CLLocationDistance PreciseRadius = 25.0;
+
 
 - (id)init
 {
@@ -19,10 +21,10 @@ CLLocationDistance RadiusForRegion = 15.0;
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager setDelegate:self];
     
-    _trackingRegion = [[CLCircularRegion alloc] initWithCenter:GirlsMiddleSchoolLocation
-                                                        radius:RadiusForRegion
-                                                    identifier:@"GirlsMiddleSchool"];
-    
+    _roughTrackingRegion = [[CLCircularRegion alloc] initWithCenter:GirlsMiddleSchoolLocation
+                                                             radius:RoughRadiusForRegion
+                                                         identifier:@"GirlsMiddleSchoolRough"];
+    _centerOfBackParkingLot = [[CLLocation alloc] initWithLatitude:GirlsMiddleSchoolLocation.latitude longitude:GirlsMiddleSchoolLocation.longitude];
     return self;
 }
 
@@ -43,7 +45,26 @@ monitoringDidFailForRegion:(CLRegion *)region
          didEnterRegion:(CLRegion *)region
 {
     NSLog(@"did enter region %@\n", region);
-    [_callbackObject performSelectorOnMainThread:_callbackSelector withObject:nil waitUntilDone:NO];
+    [self startPreciseTracking];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    for (CLLocation *location in locations) {
+        if ([location distanceFromLocation:_centerOfBackParkingLot] <= PreciseRadius) {
+            NSLog(@"Arrived inside the precise area.\n");
+            [_callbackObject performSelectorOnMainThread:_callbackSelector withObject:nil waitUntilDone:NO];
+            [self stopPreciseTracking];
+            break;
+        }
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    // Stop precise tracking on exit of the rough region
+    NSLog(@"did exit region %@\n", region);
+    [self stopPreciseTracking];
 }
 
 - (void) locationManager:(CLLocationManager *)locationManager didChangeAuthorizationStatus:(CLAuthorizationStatus)newStatus
@@ -55,6 +76,38 @@ monitoringDidFailForRegion:(CLRegion *)region
     }
 }
 
+-(void)startPreciseTracking
+{
+    CLAuthorizationStatus currentStatus = [CLLocationManager authorizationStatus];
+    switch (currentStatus) {
+        case kCLAuthorizationStatusNotDetermined:
+            [_locationManager requestAlwaysAuthorization];
+            currentStatus = [CLLocationManager authorizationStatus];
+            break;
+        case kCLAuthorizationStatusRestricted:
+        case kCLAuthorizationStatusDenied:
+            NSLog(@"CoreLocation is not authorized, so tracking will not work. Status = %i\n",currentStatus);
+            break;
+        case kCLAuthorizationStatusAuthorizedAlways:
+            NSLog(@"CoreLocation is authorized. Status = %i\n", currentStatus);
+            break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            NSLog(@"CLLocation is authorized only when the app is in use, that means notifications only go out when this is the front most app, and that's not very useful.\n");
+            break;
+    }
+    
+    if (currentStatus == kCLAuthorizationStatusAuthorizedAlways) {
+        [_locationManager startUpdatingLocation];
+    } else {
+        NSLog(@"Unable startUpdatingLocation because CLAuthorizationStatus = %u\n", currentStatus);
+    }
+}
+
+-(void)stopPreciseTracking
+{
+    NSLog(@"Stopped precise location tracking.\n");
+    [_locationManager stopUpdatingLocation];
+}
 
 - (void)startLocationServices
 {
@@ -78,8 +131,9 @@ monitoringDidFailForRegion:(CLRegion *)region
     
     if (currentStatus == kCLAuthorizationStatusAuthorizedAlways) {
         if ([CLLocationManager significantLocationChangeMonitoringAvailable]) {
+            NSLog(@"Starting precise location tracking.\n");
             [_locationManager startMonitoringSignificantLocationChanges];
-            [_locationManager startMonitoringForRegion:_trackingRegion];
+            [_locationManager startMonitoringForRegion:_roughTrackingRegion];
         } else {
             NSLog(@"[CoreLocation significantChangeMonitoringAvailable] returned NO, probably not a supported device (no cell radio, or not configured).\n");
         }
@@ -98,7 +152,8 @@ monitoringDidFailForRegion:(CLRegion *)region
 
 - (void)stopTracking
 {
-    [_locationManager stopMonitoringForRegion:_trackingRegion];
+    [self stopPreciseTracking];
+    [_locationManager stopMonitoringForRegion:_roughTrackingRegion];
     [_locationManager stopMonitoringSignificantLocationChanges];
 }
 
