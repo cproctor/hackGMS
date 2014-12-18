@@ -44,7 +44,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 - (void)locationManager:(CLLocationManager *)manager
          didEnterRegion:(CLRegion *)region
 {
-    NSLog(@"did enter region %@\n", region);
+    //NSLog(@"did enter region %@\n", region);
     [self startPreciseTracking];
 }
 
@@ -52,7 +52,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 {
     for (CLLocation *location in locations) {
         if ([location distanceFromLocation:_centerOfBackParkingLot] <= PreciseRadius) {
-            NSLog(@"Arrived inside the precise area.\n");
+            //NSLog(@"Arrived inside the precise area.\n");
             [_callbackObject performSelectorOnMainThread:_callbackSelector withObject:nil waitUntilDone:NO];
             [self stopPreciseTracking];
             break;
@@ -63,7 +63,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     // Stop precise tracking on exit of the rough region
-    NSLog(@"did exit region %@\n", region);
+    //NSLog(@"did exit region %@\n", region);
     [self stopPreciseTracking];
 }
 
@@ -89,7 +89,7 @@ monitoringDidFailForRegion:(CLRegion *)region
             NSLog(@"CoreLocation is not authorized, so tracking will not work. Status = %i\n",currentStatus);
             break;
         case kCLAuthorizationStatusAuthorizedAlways:
-            NSLog(@"CoreLocation is authorized. Status = %i\n", currentStatus);
+            //NSLog(@"CoreLocation is authorized. Status = %i\n", currentStatus);
             break;
         case kCLAuthorizationStatusAuthorizedWhenInUse:
             NSLog(@"CLLocation is authorized only when the app is in use, that means notifications only go out when this is the front most app, and that's not very useful.\n");
@@ -105,7 +105,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 
 -(void)stopPreciseTracking
 {
-    NSLog(@"Stopped precise location tracking.\n");
+    //NSLog(@"Stopped precise location tracking.\n");
     [_locationManager stopUpdatingLocation];
 }
 
@@ -122,7 +122,7 @@ monitoringDidFailForRegion:(CLRegion *)region
             NSLog(@"CoreLocation is not authorized, so tracking will not work. Status = %i\n",currentStatus);
             break;
         case kCLAuthorizationStatusAuthorizedAlways:
-            NSLog(@"CoreLocation is authorized. Status = %i\n", currentStatus);
+            //NSLog(@"CoreLocation is authorized. Status = %i\n", currentStatus);
             break;
         case kCLAuthorizationStatusAuthorizedWhenInUse:
             NSLog(@"CLLocation is authorized only when the app is in use, that means notifications only go out when this is the front most app, and that's not very useful.\n");
@@ -131,7 +131,7 @@ monitoringDidFailForRegion:(CLRegion *)region
     
     if (currentStatus == kCLAuthorizationStatusAuthorizedAlways) {
         if ([CLLocationManager significantLocationChangeMonitoringAvailable]) {
-            NSLog(@"Starting precise location tracking.\n");
+            //NSLog(@"Starting precise location tracking.\n");
             [_locationManager startMonitoringSignificantLocationChanges];
             [_locationManager startMonitoringForRegion:_roughTrackingRegion];
         } else {
