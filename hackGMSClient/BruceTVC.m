@@ -77,6 +77,20 @@
     }
 }
 
+-(void)handleNetworkingError:(NSError *)error
+{
+    static SystemSoundID errorSoundFileObject = 0;
+    
+    if (!errorSoundFileObject) {
+        NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"Sad_Trombone-Joe_Lamb-665429450" withExtension:@"wav"];
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)(soundURL), &errorSoundFileObject);
+    }
+    AudioServicesPlaySystemSound(errorSoundFileObject);
+    [self.refreshControl endRefreshing];
+
+    NSLog(@"networking error %@\n", error);
+}
+
 
 - (void)viewDidLoad {
     NSString *username;
@@ -104,6 +118,8 @@
     _networkingClient = [[NetworkingClient alloc] init];
     //_networkingClient.useTestServer = YES;
     _messages = [[NSArray alloc] init];
+    
+    [_networkingClient setErrorReportingObject:self selector:@selector(handleNetworkingError:)];
 
     // Run the preferences UI if we don't have a username configured.
     username = [[NSUserDefaults standardUserDefaults] stringForKey:userNameKey];

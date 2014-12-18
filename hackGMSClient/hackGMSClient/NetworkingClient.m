@@ -45,7 +45,11 @@ NSString *testServerURLForMessages = @"http://localhost:5000/api/messages";
     }
     NSURLSession *urlSession = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [self performSelectorOnMainThread:@selector(setMessagesFromJSONData:) withObject:data waitUntilDone:NO];
+        if (error) {
+            [_errorReportingObject performSelectorOnMainThread:_errorReportingSelector withObject:error waitUntilDone:NO];
+        } else {
+            [self performSelectorOnMainThread:@selector(setMessagesFromJSONData:) withObject:data waitUntilDone:NO];
+        }
     }];
     [dataTask resume];
 }
@@ -75,6 +79,7 @@ static NSString * _readBytes(CFReadStreamRef stream)
 static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, void* clientCallBackInfo)
 {
     NSString *messageToLog;
+    NSError *error = nil;
     CFStreamError myErr;
     BOOL cleanUpAndClose = NO;
     
@@ -95,14 +100,17 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
             myErr = CFReadStreamGetError(stream);
             if (myErr.domain == kCFStreamErrorDomainPOSIX) {
                 // Interpret myErr.error as a UNIX errno.
+                error = [NSError errorWithDomain:NSPOSIXErrorDomain code:myErr.error userInfo:nil];
                 messageToLog = [NSString stringWithFormat:@"error opening the stream, UNIX error:%i\n", (int)myErr.error];
             } else if (myErr.domain == kCFStreamErrorDomainMacOSStatus) {
                 // Interpret myErr.error as a MacOS error code.
                 OSStatus macError = (OSStatus)myErr.error;
                 // Check other error domains.
+                error = [NSError errorWithDomain:NSOSStatusErrorDomain code:myErr.error userInfo:nil];
                 messageToLog = [NSString stringWithFormat:@"error opening the stream, Mac error:%i\n", (int)macError];
+            } else {
+                messageToLog = @"error";
             }
-            messageToLog = @"error";
             cleanUpAndClose = YES;
             break;
         case kCFStreamEventEndEncountered:
@@ -118,7 +126,11 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
         CFReadStreamUnscheduleFromRunLoop(stream, CFRunLoopGetMain(), kCFRunLoopDefaultMode);
         CFReadStreamClose(stream);
         id callbackObject = (__bridge id)clientCallBackInfo;
-        [callbackObject performSelectorOnMainThread:@selector(sendFetchCallback) withObject:nil waitUntilDone:NO];
+        if (error) {
+            [callbackObject performSelectorOnMainThread:@selector(sendErrorCallback:) withObject:error waitUntilDone:NO];
+        } else {
+            [callbackObject performSelectorOnMainThread:@selector(sendFetchCallback) withObject:nil waitUntilDone:NO];
+        }
         //[callbackObject performSelectorOnMainThread:@selector(refresh:) withObject:nil waitUntilDone:NO];
         
     }
@@ -126,6 +138,12 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
     //NSLog(@"CFReadStreamRef:%p type:%lu on thread:%p\n%@", stream, type, [NSThread currentThread], messageToLog);
     
 }
+
+-(void)sendErrorCallback:(NSError *)error
+{
+    [_errorReportingObject performSelector:_errorReportingSelector withObject:error afterDelay:0.0];
+}
+
 
 - (void)sendFetchCallback
 {
@@ -184,16 +202,20 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
     
     if (!CFReadStreamOpen(myReadStream)) {
         CFStreamError myErr = CFReadStreamGetError(myReadStream);
+        NSError *error;
         // An error has occurred.
         if (myErr.domain == kCFStreamErrorDomainPOSIX) {
             // Interpret myErr.error as a UNIX errno.
+            error = [NSError errorWithDomain:NSPOSIXErrorDomain code:myErr.error userInfo:nil];
             NSLog(@"error opening the stream, UNIX error:%i\n", (int)myErr.error);
         } else if (myErr.domain == kCFStreamErrorDomainMacOSStatus) {
             // Interpret myErr.error as a MacOS error code.
             OSStatus macError = (OSStatus)myErr.error;
+            error = [NSError errorWithDomain:NSOSStatusErrorDomain code:myErr.error userInfo:nil];
             // Check other error domains.
             NSLog(@"error opening the stream, Mac error:%i\n", (int)macError);
         }
+        [_errorReportingObject performSelector:_errorReportingSelector withObject:error afterDelay:0.0];
     }
 }
 
@@ -250,6 +272,10 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
     [_fetchCallBackObject performSelectorOnMainThread:_fetchCallbackSelector withObject:[NSArray arrayWithArray:_messages] waitUntilDone:NO];
 }
 
-
+- (void)setErrorReportingObject:(id)obj selector:(SEL)selector
+{
+    _errorReportingObject = obj;
+    _errorReportingSelector = selector;
+}
 
 @end

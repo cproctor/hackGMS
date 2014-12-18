@@ -11,12 +11,11 @@ Need a version number label in the preferences
 Add a footer, move the preferences to the footer, add a link for Girls Middle School
 
 Bugs (in rough order of importance)
+Trumpet sound on arrival isn't playing anymore
 Get the preferences UI to flow correctly when rotating the phone
-Fix alignment of the buttons in the header
 Don't allow posting if the user does not have a name specified
 When pulling down to refresh, I want the spinning gear below the header, not above it
 Figure out the right text encoding to use with JSON data to get rid of that odd warning in the console
-If we cannot post a message to the server, we should play an error sound and display some kind of error
 
 Refactoring:
 Put the header view (text input, button, and info button) into it's own XIB so it's easier to edit
@@ -35,10 +34,12 @@ Testing Tasks:
 Test on device with no cell modem
 Test with really slow server (slow for POST and GET)
 Test with massive number of messages
-Test the app while driving on 101, West Bayshore, both directions. App should trigger only when in the driveway
 Test to verify the app works when not frontmost, and when not running
 Teston iPhone 4S, 5S, 6, 6 plus
 Test how the app works when the network is dead and/or flakey
+
+Tested and Verified:
+Test the app while driving on 101, West Bayshore, both directions. App should trigger only when in the driveway (Olivia said only after turning into the parking area)
 
 Done:
 Make the sound play only after a successful post to the server, if the server is down then no sound plays
@@ -50,3 +51,5 @@ Fix the sort order so new messages appear a the top
 When starting the app, sometimes the screen doesn't refresh.
 The app should play a sound when it triggers the automatic "I have arrived" post, maybe a trumpet playing
 Some messages are not the right height, they are drawing outside their frame.
+Fix alignment of the buttons in the header
+If we cannot post a message to the server, we should play an error sound and display some kind of error

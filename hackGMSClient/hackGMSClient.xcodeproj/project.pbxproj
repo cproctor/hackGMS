@@ -22,6 +22,7 @@
 		D0BB62141A13C4F100411615 /* GMS_Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D0BB62121A13C4F100411615 /* GMS_Logo.jpg */; };
 		D0BB62151A13C4F100411615 /* GPS Test Locations.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D0BB62131A13C4F100411615 /* GPS Test Locations.rtf */; };
 		D0BB62171A13C54900411615 /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0BB62161A13C54900411615 /* ToDo.txt */; };
+		D0BB88F51A429ED900FA7044 /* Sad_Trombone-Joe_Lamb-665429450.wav in Resources */ = {isa = PBXBuildFile; fileRef = D0BB88F41A429ED900FA7044 /* Sad_Trombone-Joe_Lamb-665429450.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D0BB62121A13C4F100411615 /* GMS_Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = GMS_Logo.jpg; path = hackGMSClient/GMS_Logo.jpg; sourceTree = "<group>"; };
 		D0BB62131A13C4F100411615 /* GPS Test Locations.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "GPS Test Locations.rtf"; path = "hackGMSClient/GPS Test Locations.rtf"; sourceTree = "<group>"; };
 		D0BB62161A13C54900411615 /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
+		D0BB88F41A429ED900FA7044 /* Sad_Trombone-Joe_Lamb-665429450.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Sad_Trombone-Joe_Lamb-665429450.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				D013F45F1A302BE0004755F1 /* 024971_Trumpet_Charge_Sound_Effect.caf */,
+				D0BB88F41A429ED900FA7044 /* Sad_Trombone-Joe_Lamb-665429450.wav */,
 				2FF10B391A129EDD0072899A /* Info.plist */,
 				2FF10B3A1A129EDD0072899A /* main.m */,
 				D0BB62161A13C54900411615 /* ToDo.txt */,
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0BB88F51A429ED900FA7044 /* Sad_Trombone-Joe_Lamb-665429450.wav in Resources */,
 				D013F4601A302BE0004755F1 /* 024971_Trumpet_Charge_Sound_Effect.caf in Resources */,
 				D0BB62151A13C4F100411615 /* GPS Test Locations.rtf in Resources */,
 				2FF10B441A129EDD0072899A /* Main.storyboard in Resources */,

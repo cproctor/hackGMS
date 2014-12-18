@@ -21,8 +21,11 @@ NSString *kMessageDateAsStringWithRelativeFormat;
 @property (strong, nonatomic) id fetchCallBackObject;
 @property (nonatomic) SEL fetchCallbackSelector;
 @property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) id errorReportingObject;
+@property (nonatomic) SEL errorReportingSelector;
 
 - (void)postMessageToServer:(NSString *)message author:(NSString *)author withObject:(id)object selector:(SEL)selector;
 - (void)fetchMessagesWithObject:(id)obj selector:(SEL)selector;
+- (void)setErrorReportingObject:(id)obj selector:(SEL)selector;
 
 @end
