@@ -9,6 +9,7 @@ Get a version that runs in Spanish
 Add a field in prefs for developers to specify a test server URL
 Need a version number label in the preferences
 Add a footer, move the preferences to the footer, add a link for Girls Middle School
+Make the app download the details of location and radius from the server, that would enable us to fiddle with those items withour pushing out new client code
 
 Bugs (in rough order of importance)
 Trumpet sound on arrival isn't playing anymore
@@ -28,6 +29,8 @@ Administration Tasks:
 Get an SSL certificate
 Set up an administration UI for changing the password
 Set up an administration UI for blocking a user
+Set up an Apple Developer account for the School
+Submit the app to the App Store
 
 
 Testing Tasks:
