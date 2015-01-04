@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+NSString *CoreLocationNotAuthorized;
 
 @interface TrackArrivals : NSObject <CLLocationManagerDelegate>
 

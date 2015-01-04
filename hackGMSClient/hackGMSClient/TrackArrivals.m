@@ -8,6 +8,9 @@
 
 #import "TrackArrivals.h"
 
+NSString *CoreLocationNotAuthorized = @"CoreLocationNotAuthorized";
+
+
 @implementation TrackArrivals
 
 CLLocationCoordinate2D GirlsMiddleSchoolLocation = {37.4352, -122.11035};
@@ -72,6 +75,8 @@ monitoringDidFailForRegion:(CLRegion *)region
     if (newStatus == kCLAuthorizationStatusAuthorizedAlways) {
         [self startLocationServices];
     } else {
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:CoreLocationNotAuthorized object:nil];
         NSLog(@"CoreLocation status came in as %i, and that isn't going to work.\n", newStatus);
     }
 }
@@ -99,6 +104,8 @@ monitoringDidFailForRegion:(CLRegion *)region
     if (currentStatus == kCLAuthorizationStatusAuthorizedAlways) {
         [_locationManager startUpdatingLocation];
     } else {
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:CoreLocationNotAuthorized object:nil];
         NSLog(@"Unable startUpdatingLocation because CLAuthorizationStatus = %u\n", currentStatus);
     }
 }
@@ -138,6 +145,8 @@ monitoringDidFailForRegion:(CLRegion *)region
             NSLog(@"[CoreLocation significantChangeMonitoringAvailable] returned NO, probably not a supported device (no cell radio, or not configured).\n");
         }
     } else {
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:CoreLocationNotAuthorized object:nil];
         NSLog(@"Unable start significant changes monitoring because CLAuthorizationStatus = %u\n", currentStatus);
     }
 }

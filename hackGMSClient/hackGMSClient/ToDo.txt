@@ -1,5 +1,4 @@
 Features (in rough order of importance)
-If the CoreLocation manager tells us we are not authorized to use CL, we should alert the user and move the Automatic switch back to off
 Figure out password and auth details (https://flask-login.readthedocs.org/en/latest/)
 Add ability to delete messages that the user posted
 Add some colors and make it looks nicer
@@ -56,3 +55,4 @@ The app should play a sound when it triggers the automatic "I have arrived" post
 Some messages are not the right height, they are drawing outside their frame.
 Fix alignment of the buttons in the header
 If we cannot post a message to the server, we should play an error sound and display some kind of error
+If the CoreLocation manager tells us we are not authorized to use CL, we should alert the user and move the Automatic switch back to off

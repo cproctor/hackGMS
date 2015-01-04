@@ -20,6 +20,7 @@ NSString *useTestServerKey = @"useTestServer";
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     BOOL useTestServer = [ud boolForKey:useTestServerKey];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     _userName = [ud stringForKey:userNameKey];
     if (!_userName)
@@ -31,6 +32,7 @@ NSString *useTestServerKey = @"useTestServer";
     [_trackLocation setOn:_automaticallyNotify];
     [_useTestServer setOn:useTestServer];
 
+    [nc addObserver:self selector:@selector(coreLocationDenied) name:CoreLocationNotAuthorized object:nil];
 }
 
 - (IBAction)automaticallyNotifyOnArrival:(id)sender
@@ -78,6 +80,12 @@ NSString *useTestServerKey = @"useTestServer";
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)coreLocationDenied
+{
+    [_trackLocation setOn:NO];
+    [self automaticallyNotifyOnArrival:_trackLocation];
 }
 
 
