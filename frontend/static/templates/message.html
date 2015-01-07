@@ -3,6 +3,6 @@ once for each message that needs to be displayed. If you change this template,
 the appearance of each message will be affected. -->
 <div class="message">
     <p>{{message.text}}</p>
-    <p style="color:blue;">Created by {{message.author}} on {{message.date.toLocaleDateString("en-US")}} <button ng-click="deleteMessage(message);"style="color:blue;">DELETE</button></p>
+    <p style="color:blue;">Created by {{message.author}} on {{message.date.toLocaleDateString("en-US")}} at {{message.date.toLocaleTimeString("en-US")}} <button ng-click="deleteMessage(message);"style="color:blue;">DELETE</button></p>
     <p ></p>
 </div>
