@@ -47,7 +47,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 - (void)locationManager:(CLLocationManager *)manager
          didEnterRegion:(CLRegion *)region
 {
-    //NSLog(@"did enter region %@\n", region);
+    NSLog(@"did enter region %@\n", region);
     [self startPreciseTracking];
 }
 
@@ -55,8 +55,11 @@ monitoringDidFailForRegion:(CLRegion *)region
 {
     for (CLLocation *location in locations) {
         if ([location distanceFromLocation:_centerOfBackParkingLot] <= PreciseRadius) {
-            //NSLog(@"Arrived inside the precise area.\n");
-            [_callbackObject performSelectorOnMainThread:_callbackSelector withObject:nil waitUntilDone:NO];
+            NSLog(@"Arrived inside the precise area.\n");
+            if (!_insidePreciseRegion) {
+                [_callbackObject performSelectorOnMainThread:_callbackSelector withObject:nil waitUntilDone:NO];
+                _insidePreciseRegion = YES;
+            }
             [self stopPreciseTracking];
             break;
         }
@@ -66,7 +69,8 @@ monitoringDidFailForRegion:(CLRegion *)region
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     // Stop precise tracking on exit of the rough region
-    //NSLog(@"did exit region %@\n", region);
+    NSLog(@"did exit region %@\n", region);
+    _insidePreciseRegion = NO;
     [self stopPreciseTracking];
 }
 
@@ -112,7 +116,7 @@ monitoringDidFailForRegion:(CLRegion *)region
 
 -(void)stopPreciseTracking
 {
-    //NSLog(@"Stopped precise location tracking.\n");
+    NSLog(@"Stopped precise location tracking.\n");
     [_locationManager stopUpdatingLocation];
 }
 

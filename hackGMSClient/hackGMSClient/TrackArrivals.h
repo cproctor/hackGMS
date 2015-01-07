@@ -18,6 +18,7 @@ NSString *CoreLocationNotAuthorized;
 @property (strong, nonatomic) CLLocation *centerOfBackParkingLot;
 @property (strong, nonatomic) id callbackObject;
 @property (nonatomic) SEL callbackSelector;
+@property (nonatomic) BOOL insidePreciseRegion;
 
 - (void)startTrackingWithObject:(id)obj selector:(SEL)selector;
 - (void)stopTracking;
