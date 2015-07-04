@@ -50,13 +50,29 @@
 
 -(void)playArrivalSound
 {
-    static SystemSoundID soundFileObject = 0;
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+        static SystemSoundID soundFileObject = 0;
+        if (!soundFileObject) {
+            NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"024971_Trumpet_Charge_Sound_Effect" withExtension:@"caf"];
+            AudioServicesCreateSystemSoundID((__bridge CFURLRef)(soundURL), &soundFileObject);
+        }
+        AudioServicesPlaySystemSound(soundFileObject);
+    } else {
+        UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+        if (localNotif == nil)
+            return;
+        localNotif.fireDate = [NSDate date];
+        localNotif.timeZone = [NSTimeZone defaultTimeZone];
     
-    if (!soundFileObject) {
-        NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"024971_Trumpet_Charge_Sound_Effect" withExtension:@"caf"];
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)(soundURL), &soundFileObject);
+        localNotif.alertBody = @"Your arrival was posted to hackGMS";
+        localNotif.alertAction = nil;
+        localNotif.alertTitle = nil;
+    
+        localNotif.soundName = UILocalNotificationDefaultSoundName;
+        localNotif.applicationIconBadgeNumber = 1;
+        localNotif.soundName = @"024971_Trumpet_Charge_Sound_Effect.caf";
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
     }
-    AudioServicesPlaySystemSound(soundFileObject);
 }
 
 - (void)arrivedAtGMS

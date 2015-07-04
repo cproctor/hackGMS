@@ -37,6 +37,8 @@
     
     // Sync up with the server
     [rootViewController fetchNewData];
+    
+    //[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -50,6 +52,11 @@
     
     [navController setNavigationBarHidden:YES];
     [rootViewController.tableView reloadData];
+    
+    UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+
     
     return YES;
 }
