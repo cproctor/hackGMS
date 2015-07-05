@@ -20,7 +20,8 @@ NSString *testServerURLString = @"http://localhost:5000/api/messages/create";
 NSString *URLForMessages = @"http://gms.ninja/api/messages";
 NSString *testServerURLForMessages = @"http://localhost:5000/api/messages";
 
-
+NSString *testServerFormatFetch = @"http://%@:5000/api/messages";
+NSString *testServerFormatPost = @"http://%@:5000/api/messages/create";
 
 @implementation NetworkingClient
 
@@ -36,10 +37,16 @@ NSString *testServerURLForMessages = @"http://localhost:5000/api/messages";
     NSURL *url;
     _fetchCallBackObject = obj;
     _fetchCallbackSelector = selector;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     
 
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:useTestServerKey]) {
-        url = [NSURL URLWithString:testServerURLForMessages];
+    if ([ud boolForKey:useTestServerKey]) {
+        NSString *testServer = [ud stringForKey:testServerHostNameKey];
+        if (!testServer || [testServer length] == 0) {
+            testServer = @"localhost";
+        }
+        NSString *urlString = [NSString stringWithFormat:testServerFormatFetch, testServer];
+        url = [NSURL URLWithString:urlString];
     } else {
         url = [NSURL URLWithString:URLForMessages];
     }
@@ -158,14 +165,21 @@ static void _ReadClientCallBack(CFReadStreamRef stream, CFStreamEventType type, 
     CFDataRef mySerializationRequest;
     NSString *URLstring;
     CFStreamClientContext clientContext;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+
     
     _postCallBackObject = object;
     _postCallbackSelector = selector;
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:useTestServerKey])
-        URLstring = testServerURLString;
-    else
+    if ([ud boolForKey:useTestServerKey]) {
+        NSString *testServer = [ud stringForKey:testServerHostNameKey];
+        if (!testServer || [testServer length] == 0) {
+            testServer = @"localhost";
+        }
+        URLstring = [NSString stringWithFormat:testServerFormatPost, testServer];
+    } else {
         URLstring = serverURLString;
+    }
     
     serverURL = CFURLCreateWithString(kCFAllocatorDefault, (CFStringRef)URLstring, NULL);
     

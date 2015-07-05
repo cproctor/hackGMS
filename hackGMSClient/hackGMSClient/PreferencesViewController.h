@@ -11,6 +11,7 @@
 extern NSString *userNameKey;
 extern NSString *automaticallyNotifyKey;
 extern NSString *useTestServerKey;
+extern NSString *testServerHostNameKey;
 
 @interface PreferencesViewController : UIViewController <UITextFieldDelegate>
 
@@ -18,9 +19,8 @@ extern NSString *useTestServerKey;
 @property (strong, nonatomic) IBOutlet UISwitch *trackLocation;
 @property (strong, nonatomic) IBOutlet UISwitch *useTestServer;
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
+@property (strong, nonatomic) IBOutlet UITextField *testServerHostNameField;
 
-@property (strong, nonatomic) NSString *userName;
-@property (nonatomic) BOOL automaticallyNotify;
 @property (strong, nonatomic) UIViewController *callingViewController;
 
 - (IBAction)automaticallyNotifyOnArrival:(id)sender;

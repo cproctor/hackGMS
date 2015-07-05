@@ -15,32 +15,40 @@
 NSString *userNameKey = @"userNameKey";
 NSString *automaticallyNotifyKey = @"automaticallyNotify";
 NSString *useTestServerKey = @"useTestServer";
+NSString *testServerHostNameKey = @"testServerHostName";
 
 - (void)viewDidLoad
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     BOOL useTestServer = [ud boolForKey:useTestServerKey];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSString *userName, *testServerHostName;
+    BOOL automaticallyNotify;
     
-    _userName = [ud stringForKey:userNameKey];
-    if (!_userName)
-        _userName = @"";
+    userName = [ud stringForKey:userNameKey];
+    if (!userName)
+        userName = @"";
     
-    _automaticallyNotify = [ud boolForKey:automaticallyNotifyKey];
+    automaticallyNotify = [ud boolForKey:automaticallyNotifyKey];
+    testServerHostName = [ud stringForKey:testServerHostNameKey];
+    if (!testServerHostName)
+        testServerHostName = @"";
     
-    [_userNameField setText:_userName];
-    [_trackLocation setOn:_automaticallyNotify];
+    [_userNameField setText:userName];
+    [_trackLocation setOn:automaticallyNotify];
     [_useTestServer setOn:useTestServer];
+    [_testServerHostNameField setText:testServerHostName];
 
     [nc addObserver:self selector:@selector(coreLocationDenied) name:CoreLocationNotAuthorized object:nil];
 }
 
 - (IBAction)automaticallyNotifyOnArrival:(id)sender
 {
+    BOOL automaticallyNotify;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    _automaticallyNotify = [sender isOn];
-    [ud setBool:_automaticallyNotify forKey:automaticallyNotifyKey];
-    [(BruceTVC *)_callingViewController startTrackingArrivalsAtGMS:_automaticallyNotify];
+    automaticallyNotify = [sender isOn];
+    [ud setBool:automaticallyNotify forKey:automaticallyNotifyKey];
+    [(BruceTVC *)_callingViewController startTrackingArrivalsAtGMS:automaticallyNotify];
 }
 
 - (IBAction)useTestServer:(id)sender
@@ -54,6 +62,7 @@ NSString *useTestServerKey = @"useTestServer";
 - (IBAction)done:(id)sender
 {
     [_userNameField resignFirstResponder];
+    [_testServerHostNameField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:^{
         [(BruceTVC *)_callingViewController preferencesFinished];
     }];
@@ -62,9 +71,12 @@ NSString *useTestServerKey = @"useTestServer";
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-
-    [ud setObject:[textField text] forKey:userNameKey];
     
+    if (textField == _userNameField) {
+        [ud setObject:[textField text] forKey:userNameKey];
+    } else if (textField == _testServerHostNameField) {
+        [ud setObject:[textField text] forKey:testServerHostNameKey];
+    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView

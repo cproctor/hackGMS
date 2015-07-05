@@ -5,7 +5,6 @@ Add some colors and make it looks nicer
 Only leave preferences once the user has provided a first and last name
 On each message send and fetch, the client should send along a unique device identifier. This would allow the server to build an "ignore" list for abusers
 Get a version that runs in Spanish
-Add a field in prefs for developers to specify a test server URL
 Need a version number label in the preferences
 Add a footer, move the preferences to the footer, add a link for Girls Middle School
 Make the app download the details of location and radius from the server, that would enable us to fiddle with those items without pushing out new client code
@@ -33,7 +32,7 @@ Submit the app to the App Store
 
 
 Testing Tasks:
-Test on device with no cell modem
+Test on device with no cell modem (iPad and iPod Touch)
 Test with really slow server (slow for POST and GET)
 Test with massive number of messages
 Test to verify the app works when not frontmost, and when not running
@@ -58,3 +57,4 @@ If we cannot post a message to the server, we should play an error sound and dis
 If the CoreLocation manager tells us we are not authorized to use CL, we should alert the user and move the Automatic switch back to off
 The app is posting 2-4 times each time I arrive at school
 Trumpet sound on arrival doesn't play if the app isn't front most, probably need to switch to a notification
+Add a field in prefs for developers to specify a test server URL

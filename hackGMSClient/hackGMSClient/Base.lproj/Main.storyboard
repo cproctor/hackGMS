@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ktc-XR-XvM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ktc-XR-XvM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -106,7 +106,7 @@
                                 <rect key="frame" x="16" y="58" width="570" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="WY1-IJ-7a2"/>
+                                    <constraint firstAttribute="height" constant="80" id="7mD-g6-0af"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -122,13 +122,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Site Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwS-ZN-jdD">
                                 <rect key="frame" x="16" y="157" width="115" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWl-GW-G9L">
                                 <rect key="frame" x="16" y="24" width="82" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2HV-he-ngJ">
@@ -140,21 +140,21 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post When I Arrive at GMS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaq-ri-N6M">
                                 <rect key="frame" x="74" y="227" width="509" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUh-nw-vZz">
                                 <rect key="frame" x="16" y="261" width="570" height="156"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="156" id="zW5-eQ-vKU"/>
-                                </constraints>
                                 <string key="text">Our application can detect when you arrive a GMS and automatically post a message on your behalf, even if other applications are running. Please move this switch to the "ON" position to enable this feature. Moving the switch to the "OFF" position will stop all tracking.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-sN-QZB">
                                 <rect key="frame" x="282" y="562" width="37" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="D2P-cx-1Q2"/>
+                                </constraints>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -163,51 +163,68 @@
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Leb-kA-buo">
-                                <rect key="frame" x="16" y="528" width="51" height="31"/>
+                                <rect key="frame" x="16" y="485" width="51" height="31"/>
                                 <connections>
                                     <action selector="useTestServer:" destination="z6v-rd-0oC" eventType="valueChanged" id="4F7-yn-03p"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use test server on localhost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTQ-N2-Yas">
-                                <rect key="frame" x="73" y="533" width="214" height="21"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QC4-UI-ZSe">
+                                <rect key="frame" x="17" y="524" width="567" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3o3-ER-vRP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="z6v-rd-0oC" id="mRz-GJ-fgK"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use test server" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTQ-N2-Yas">
+                                <rect key="frame" x="73" y="495" width="510" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HKR-kW-AKQ" firstAttribute="top" secondItem="A48-cJ-UbK" secondAttribute="bottom" constant="8" symbolic="YES" id="1QE-gh-1H1"/>
-                            <constraint firstItem="IUh-nw-vZz" firstAttribute="top" secondItem="2HV-he-ngJ" secondAttribute="bottom" constant="8" symbolic="YES" id="1hu-dx-RPO"/>
-                            <constraint firstItem="Leb-kA-buo" firstAttribute="leading" secondItem="IUh-nw-vZz" secondAttribute="leading" id="8Rv-Fv-3vz"/>
-                            <constraint firstItem="A48-cJ-UbK" firstAttribute="leading" secondItem="IWl-GW-G9L" secondAttribute="trailing" constant="8" symbolic="YES" id="CIG-NR-mCM"/>
-                            <constraint firstItem="HKR-kW-AKQ" firstAttribute="leading" secondItem="IWl-GW-G9L" secondAttribute="leading" id="CZA-qG-ftl"/>
-                            <constraint firstItem="qwY-aX-axQ" firstAttribute="top" secondItem="v3e-sN-QZB" secondAttribute="bottom" constant="8" symbolic="YES" id="F3g-US-dgO"/>
-                            <constraint firstItem="bTQ-N2-Yas" firstAttribute="leading" secondItem="Leb-kA-buo" secondAttribute="trailing" constant="8" symbolic="YES" id="HAH-jE-dYv"/>
-                            <constraint firstItem="IWl-GW-G9L" firstAttribute="top" secondItem="cS6-Nj-NI2" secondAttribute="bottom" constant="4" id="IFN-rv-sbh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gaq-ri-N6M" secondAttribute="trailing" constant="1" id="ILo-03-4sP"/>
-                            <constraint firstItem="Leb-kA-buo" firstAttribute="leading" secondItem="6Ec-wL-80a" secondAttribute="leadingMargin" id="Khq-bx-fpq"/>
-                            <constraint firstItem="9Z6-Dl-fYQ" firstAttribute="leading" secondItem="fwS-ZN-jdD" secondAttribute="trailing" constant="13" id="MIh-N0-YM9"/>
-                            <constraint firstItem="gaq-ri-N6M" firstAttribute="leading" secondItem="2HV-he-ngJ" secondAttribute="trailing" constant="8" symbolic="YES" id="P2I-jE-Clg"/>
-                            <constraint firstItem="fwS-ZN-jdD" firstAttribute="leading" secondItem="IUh-nw-vZz" secondAttribute="leading" id="RWT-xf-aq7"/>
-                            <constraint firstItem="9Z6-Dl-fYQ" firstAttribute="top" secondItem="HKR-kW-AKQ" secondAttribute="bottom" constant="15" id="Rux-uo-nfx"/>
-                            <constraint firstItem="HKR-kW-AKQ" firstAttribute="leading" secondItem="fwS-ZN-jdD" secondAttribute="leading" id="Ry3-NN-gcm"/>
-                            <constraint firstItem="A48-cJ-UbK" firstAttribute="trailing" secondItem="HKR-kW-AKQ" secondAttribute="trailing" id="TLu-mK-pjt"/>
-                            <constraint firstItem="v3e-sN-QZB" firstAttribute="top" secondItem="bTQ-N2-Yas" secondAttribute="bottom" constant="8" symbolic="YES" id="USE-Nx-aau"/>
-                            <constraint firstItem="Leb-kA-buo" firstAttribute="centerY" secondItem="bTQ-N2-Yas" secondAttribute="centerY" id="XJK-LS-8D9"/>
-                            <constraint firstItem="2HV-he-ngJ" firstAttribute="leading" secondItem="6Ec-wL-80a" secondAttribute="leadingMargin" constant="1" id="bOC-AO-ap9"/>
-                            <constraint firstItem="HKR-kW-AKQ" firstAttribute="trailing" secondItem="IUh-nw-vZz" secondAttribute="trailing" id="c23-za-IG0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="A48-cJ-UbK" secondAttribute="trailing" constant="-2" id="dsF-Ls-VLq"/>
-                            <constraint firstItem="fwS-ZN-jdD" firstAttribute="top" secondItem="HKR-kW-AKQ" secondAttribute="bottom" constant="19" id="fBW-tI-IAX"/>
-                            <constraint firstItem="9Z6-Dl-fYQ" firstAttribute="trailing" secondItem="6Ec-wL-80a" secondAttribute="trailingMargin" id="hb7-DY-EbG"/>
-                            <constraint firstItem="A48-cJ-UbK" firstAttribute="top" secondItem="cS6-Nj-NI2" secondAttribute="bottom" id="j9W-OU-0wv"/>
-                            <constraint firstItem="2HV-he-ngJ" firstAttribute="top" secondItem="fwS-ZN-jdD" secondAttribute="bottom" constant="44" id="saG-RU-3VX"/>
-                            <constraint firstItem="gaq-ri-N6M" firstAttribute="centerY" secondItem="2HV-he-ngJ" secondAttribute="centerY" id="vGh-s5-RpE"/>
-                            <constraint firstItem="v3e-sN-QZB" firstAttribute="centerX" secondItem="6Ec-wL-80a" secondAttribute="centerX" id="zoq-Rg-Vtm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A48-cJ-UbK" secondAttribute="trailing" constant="-2" id="1Ks-53-oEm"/>
+                            <constraint firstItem="2HV-he-ngJ" firstAttribute="centerY" secondItem="gaq-ri-N6M" secondAttribute="centerY" id="1x1-y8-bhn"/>
+                            <constraint firstItem="v3e-sN-QZB" firstAttribute="centerX" secondItem="QC4-UI-ZSe" secondAttribute="centerX" id="3FC-Zu-gVn"/>
+                            <constraint firstItem="QC4-UI-ZSe" firstAttribute="top" secondItem="Leb-kA-buo" secondAttribute="bottom" constant="8" symbolic="YES" id="4l6-zE-qmI"/>
+                            <constraint firstItem="HKR-kW-AKQ" firstAttribute="top" secondItem="IWl-GW-G9L" secondAttribute="bottom" constant="13" id="8GP-Lx-9Ui"/>
+                            <constraint firstItem="IWl-GW-G9L" firstAttribute="leading" secondItem="HKR-kW-AKQ" secondAttribute="leading" id="Aak-uR-Gv4"/>
+                            <constraint firstItem="2HV-he-ngJ" firstAttribute="top" secondItem="fwS-ZN-jdD" secondAttribute="bottom" constant="44" id="BqB-2i-jyy"/>
+                            <constraint firstItem="QC4-UI-ZSe" firstAttribute="trailing" secondItem="9Z6-Dl-fYQ" secondAttribute="trailing" id="Lsx-zi-bJ2"/>
+                            <constraint firstItem="9Z6-Dl-fYQ" firstAttribute="leading" secondItem="fwS-ZN-jdD" secondAttribute="trailing" constant="13" id="Pvz-0Z-XcI"/>
+                            <constraint firstItem="9Z6-Dl-fYQ" firstAttribute="top" secondItem="HKR-kW-AKQ" secondAttribute="bottom" constant="15" id="RBS-xb-KPD"/>
+                            <constraint firstItem="fwS-ZN-jdD" firstAttribute="leading" secondItem="IUh-nw-vZz" secondAttribute="leading" id="RP3-0I-1LZ"/>
+                            <constraint firstItem="IUh-nw-vZz" firstAttribute="leading" secondItem="Leb-kA-buo" secondAttribute="leading" id="Tqh-li-4Qb"/>
+                            <constraint firstItem="HKR-kW-AKQ" firstAttribute="leading" secondItem="fwS-ZN-jdD" secondAttribute="leading" id="YhI-HO-Pff"/>
+                            <constraint firstItem="gaq-ri-N6M" firstAttribute="centerX" secondItem="bTQ-N2-Yas" secondAttribute="centerX" id="ZAe-Hu-Qas"/>
+                            <constraint firstItem="bTQ-N2-Yas" firstAttribute="trailing" secondItem="gaq-ri-N6M" secondAttribute="trailing" id="afc-TO-KUF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gaq-ri-N6M" secondAttribute="trailing" constant="1" id="bhJ-DI-pZ3"/>
+                            <constraint firstItem="v3e-sN-QZB" firstAttribute="top" secondItem="QC4-UI-ZSe" secondAttribute="bottom" constant="8" symbolic="YES" id="brd-ES-jS8"/>
+                            <constraint firstItem="bTQ-N2-Yas" firstAttribute="leading" secondItem="Leb-kA-buo" secondAttribute="trailing" constant="8" symbolic="YES" id="cNp-aa-3dn"/>
+                            <constraint firstItem="A48-cJ-UbK" firstAttribute="leading" secondItem="IWl-GW-G9L" secondAttribute="trailing" constant="8" symbolic="YES" id="co1-zH-8In"/>
+                            <constraint firstItem="IUh-nw-vZz" firstAttribute="trailing" secondItem="HKR-kW-AKQ" secondAttribute="trailing" id="d4q-49-scu"/>
+                            <constraint firstItem="Leb-kA-buo" firstAttribute="top" secondItem="IUh-nw-vZz" secondAttribute="bottom" constant="68" id="ebi-C5-NVv"/>
+                            <constraint firstItem="fwS-ZN-jdD" firstAttribute="top" secondItem="HKR-kW-AKQ" secondAttribute="bottom" constant="19" id="fCZ-9j-XQp"/>
+                            <constraint firstItem="IWl-GW-G9L" firstAttribute="top" secondItem="cS6-Nj-NI2" secondAttribute="bottom" constant="4" id="g0u-Sn-Bsb"/>
+                            <constraint firstItem="A48-cJ-UbK" firstAttribute="trailing" secondItem="HKR-kW-AKQ" secondAttribute="trailing" id="j7i-H4-bhm"/>
+                            <constraint firstItem="QC4-UI-ZSe" firstAttribute="top" secondItem="bTQ-N2-Yas" secondAttribute="bottom" constant="8" symbolic="YES" id="jyV-VR-irR"/>
+                            <constraint firstItem="gaq-ri-N6M" firstAttribute="leading" secondItem="2HV-he-ngJ" secondAttribute="trailing" constant="8" symbolic="YES" id="mFX-sL-EvP"/>
+                            <constraint firstItem="IUh-nw-vZz" firstAttribute="top" secondItem="2HV-he-ngJ" secondAttribute="bottom" constant="8" symbolic="YES" id="mgW-M8-dXf"/>
+                            <constraint firstItem="HKR-kW-AKQ" firstAttribute="top" secondItem="A48-cJ-UbK" secondAttribute="bottom" constant="8" symbolic="YES" id="rKC-dI-gha"/>
+                            <constraint firstItem="qwY-aX-axQ" firstAttribute="top" secondItem="v3e-sN-QZB" secondAttribute="bottom" constant="8" symbolic="YES" id="sQn-lf-8wf"/>
+                            <constraint firstItem="2HV-he-ngJ" firstAttribute="leading" secondItem="QC4-UI-ZSe" secondAttribute="leading" id="sS8-bA-VQs"/>
+                            <constraint firstItem="IUh-nw-vZz" firstAttribute="leading" secondItem="6Ec-wL-80a" secondAttribute="leadingMargin" id="u6X-tb-U7I"/>
+                            <constraint firstItem="9Z6-Dl-fYQ" firstAttribute="trailing" secondItem="6Ec-wL-80a" secondAttribute="trailingMargin" id="wTx-NQ-4Nf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="doneButton" destination="v3e-sN-QZB" id="lgo-RP-3O8"/>
+                        <outlet property="testServerHostNameField" destination="QC4-UI-ZSe" id="j3q-88-lhq"/>
                         <outlet property="trackLocation" destination="2HV-he-ngJ" id="4RX-hz-cAn"/>
                         <outlet property="useTestServer" destination="Leb-kA-buo" id="1W3-ZE-zk1"/>
                         <outlet property="userNameField" destination="A48-cJ-UbK" id="VoC-bk-gzM"/>
